@@ -148,10 +148,11 @@
   }
 }
 
-@media (max-width: 425px){
+@media (max-width: 426px){
   .filters_section{
     margin: 50px 0;
     .recipe_filters{
+      padding: 0 4%;
       .filters_categories{
         .filtre{
            p {
@@ -184,8 +185,21 @@
         }
       }
         .result_counter{
-            font-size: 48px;
+            font-size: 42px;
         }
+    }
+    .sort_options {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      padding: 0 4%;
+      row-gap: 25px;
+      column-gap: 30px;
+      .selected_option{
+        width: auto;
+        height: auto;
+        font-size: 38px;
+        padding: 10px 20px;
+      }
     }
   }
 }
