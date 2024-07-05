@@ -1,4 +1,4 @@
-export const recipes = [
+const recipes = [
     {
         "id": 1,
         "image": "Recette01.jpg",

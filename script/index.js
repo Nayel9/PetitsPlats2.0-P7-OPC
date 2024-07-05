@@ -1,5 +1,3 @@
-import { recipes } from '/script/data/recipes.js';
-
 function createRecipeCard(recipe) {
     // Créez un élément de carte
     const recipeCard = document.createElement('div');

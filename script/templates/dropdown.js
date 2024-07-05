@@ -1,5 +1,3 @@
-import { recipes } from '/script/data/recipes.js';
-
 const ingredientFilter = document.querySelector('.filtre_ingredients');
 const appareilFilter = document.querySelector('.filtre_appareils');
 const ustensileFilter = document.querySelector('.filtre_ustensiles');
