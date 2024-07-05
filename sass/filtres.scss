@@ -148,11 +148,43 @@
   }
 }
 
-@media (max-width: 768px){
+@media (max-width: 425px){
   .filters_section{
+    margin: 50px 0;
     .recipe_filters{
-        .filters_categories{
-          gap: 20px;
+      .filters_categories{
+        .filtre{
+           p {
+             font-size: 38px;
+           }
+          .dropdown{
+            font-size: 38px;
+            width: auto;
+            height: auto;
+            padding: 20px 38px;
+            gap: 15px;
+            border-radius: 15px;
+          }
+          .list_appareils, .list_ustensiles, .list_ingredients{
+            width: 100%;
+            top: 60px;
+            padding: 40px;
+            height: 490px;
+            input{
+              height: 50px;
+              width: 100%;
+              font-size: 38px;
+            }
+            .list_name_ingredient, .list_name_appareils, .list_name_ustensiles{
+              p{
+                font-size: 38px;
+              }
+            }
+          }
+        }
+      }
+        .result_counter{
+            font-size: 48px;
         }
     }
   }

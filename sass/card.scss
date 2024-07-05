@@ -137,10 +137,10 @@
         }
       }
     }
-}@media (max-width: 426px) {
+}@media (max-width: 425px) {
 
   .header_container-search-bar input{
-    font-size: 16px;
+    font-size: 36px;
   }
 
     .recipe_container {
@@ -154,13 +154,33 @@
         width: 100%;
 
         .recipe_card_img {
-          width: 105%;
+          width: 105.1%;
           height: 400px;
         }
       }
       .recipe_card_time {
-        left: 1125px;
-        font-size: 16px;
+        left: 1050px;
+        font-size: 32px;
+        padding: 25px;
+        border-radius: 30px;
+      }
+      .recipe_card_content{
+        gap: 60px;
+        line-height: 1.6;
+        padding: 80px 160px;
+        h3{
+          font-size: 42px;
+        }
+        .recipe_card_title{
+          font-size: 48px;
+          line-height: 1.2;
+        }
+        .recipe_card_description p{
+          font-size: 38px;
+        }
+        .recipe_card_ingredients{
+          font-size: 38px;
+        }
       }
     }
 }

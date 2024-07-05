@@ -122,9 +122,9 @@
     font-size: 18px;
   }
 }
-@media (max-width: 426px) {
+@media (max-width: 425px) {
   .header_container-search-bar input {
-    font-size: 16px;
+    font-size: 36px;
   }
   .recipe_container {
     display: flex;
@@ -136,12 +136,32 @@
     width: 100%;
   }
   .recipe_container .recipe_card .recipe_card_img {
-    width: 105%;
+    width: 105.1%;
     height: 400px;
   }
   .recipe_container .recipe_card_time {
-    left: 1125px;
-    font-size: 16px;
+    left: 1050px;
+    font-size: 32px;
+    padding: 25px;
+    border-radius: 30px;
+  }
+  .recipe_container .recipe_card_content {
+    gap: 60px;
+    line-height: 1.6;
+    padding: 80px 160px;
+  }
+  .recipe_container .recipe_card_content h3 {
+    font-size: 42px;
+  }
+  .recipe_container .recipe_card_content .recipe_card_title {
+    font-size: 48px;
+    line-height: 1.2;
+  }
+  .recipe_container .recipe_card_content .recipe_card_description p {
+    font-size: 38px;
+  }
+  .recipe_container .recipe_card_content .recipe_card_ingredients {
+    font-size: 38px;
   }
 }
 .filters_section {
@@ -278,9 +298,37 @@
   padding: 0 20px;
 }
 
-@media (max-width: 768px) {
-  .filters_section .recipe_filters .filters_categories {
-    gap: 20px;
+@media (max-width: 425px) {
+  .filters_section {
+    margin: 50px 0;
+  }
+  .filters_section .recipe_filters .filters_categories .filtre p {
+    font-size: 38px;
+  }
+  .filters_section .recipe_filters .filters_categories .filtre .dropdown {
+    font-size: 38px;
+    width: auto;
+    height: auto;
+    padding: 20px 38px;
+    gap: 15px;
+    border-radius: 15px;
+  }
+  .filters_section .recipe_filters .filters_categories .filtre .list_appareils, .filters_section .recipe_filters .filters_categories .filtre .list_ustensiles, .filters_section .recipe_filters .filters_categories .filtre .list_ingredients {
+    width: 100%;
+    top: 60px;
+    padding: 40px;
+    height: 490px;
+  }
+  .filters_section .recipe_filters .filters_categories .filtre .list_appareils input, .filters_section .recipe_filters .filters_categories .filtre .list_ustensiles input, .filters_section .recipe_filters .filters_categories .filtre .list_ingredients input {
+    height: 50px;
+    width: 100%;
+    font-size: 38px;
+  }
+  .filters_section .recipe_filters .filters_categories .filtre .list_appareils .list_name_ingredient p, .filters_section .recipe_filters .filters_categories .filtre .list_appareils .list_name_appareils p, .filters_section .recipe_filters .filters_categories .filtre .list_appareils .list_name_ustensiles p, .filters_section .recipe_filters .filters_categories .filtre .list_ustensiles .list_name_ingredient p, .filters_section .recipe_filters .filters_categories .filtre .list_ustensiles .list_name_appareils p, .filters_section .recipe_filters .filters_categories .filtre .list_ustensiles .list_name_ustensiles p, .filters_section .recipe_filters .filters_categories .filtre .list_ingredients .list_name_ingredient p, .filters_section .recipe_filters .filters_categories .filtre .list_ingredients .list_name_appareils p, .filters_section .recipe_filters .filters_categories .filtre .list_ingredients .list_name_ustensiles p {
+    font-size: 38px;
+  }
+  .filters_section .recipe_filters .result_counter {
+    font-size: 48px;
   }
 }
 * {
