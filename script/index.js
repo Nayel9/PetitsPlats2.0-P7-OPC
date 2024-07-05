@@ -9,7 +9,7 @@ function createRecipeCard(recipe) {
     recipeCard.appendChild(cardImg);
     const img = document.createElement('img');
     cardImg.appendChild(img);
-    img.src = `/img/recettes/${recipe.image}`;
+    img.src = `img/recettes/${recipe.image}`;
 
     // Temps de préparation
     const recipeTime = document.createElement('div');
