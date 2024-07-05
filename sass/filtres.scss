@@ -1,0 +1,159 @@
+//Filtres
+
+.filters_section{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 30px 0 60px 0;
+}
+
+.recipe_filters{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 7%;
+
+  .filters_categories{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+
+    .filtre{
+      position: relative;
+    }
+
+    .dropdown{
+      border: none;
+      border-radius: 10px;
+      height: 56px;
+      width: 220px;
+      display: flex;
+      padding: 0 20px;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #FFFFFF;
+      cursor: pointer;
+      outline: none;
+      font-size: 18px;
+    }
+
+    .option{
+      display: none;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 400;
+      color: #EDEDED;
+
+
+
+
+      .fa-search{
+        position: absolute;
+        right: 30px;
+        top: 20px;
+      }
+
+      input{
+        border: #EDEDED 2px solid;
+        height: 36px;
+        width: 100%;
+      }
+    }
+  }
+
+  .result_counter{
+    font-family: "Anton", sans-serif;
+    font-size: 21px;
+    font-weight: 400;
+  }
+}
+ //JS Class
+
+.dropdown-icon-ingredients.open-rotate,
+.dropdown-icon-appareils.open-rotate,
+.dropdown-icon-ustensiles.open-rotate {
+  transform: rotate(180deg);
+  transition: transform 350ms ease-out;
+}
+
+.dropdown-icon-ingredients.close-rotate,
+.dropdown-icon-appareils.close-rotate,
+.dropdown-icon-ustensiles.close-rotate {
+  transform: rotate(0deg);
+  transition: transform 350ms ease-out;
+}
+
+.list_name_ingredient, .list_name_appareils, .list_name_ustensiles{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 20px;
+    padding-right: 5px;
+    background-color: #FFFFFF;
+    cursor: pointer;
+    overflow-y: scroll;
+    text-transform: capitalize;
+    p{
+      padding: 10px 0;
+      width: 100%;
+      font-size: 18px;
+    }
+    p:hover{
+      background-color: #FFD15B;
+      padding: 10px 0;
+      width: 100%;
+
+    }
+
+}
+
+.list_ingredients, .list_appareils, .list_ustensiles{
+  display: none;
+  flex-direction: column;
+  gap: 15px;
+  width: 220px;
+  padding: 10px 20px 10px 20px;
+  background-color: #FFFFFF;
+  position: absolute;
+  top: 45px;
+  border-radius: 0 0 10px 10px;
+  z-index: 1000;
+  height: 320px;
+}
+
+
+.sort_options{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  padding: 0 7%;
+  row-gap: 15px;
+  column-gap: 30px;
+  .selected_option {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFD15B;
+    border-radius: 10px;
+    width: 220px;
+    height: 53px;
+    font-size: 18px;
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 768px){
+  .filters_section{
+    .recipe_filters{
+        .filters_categories{
+          gap: 20px;
+        }
+    }
+  }
+}
