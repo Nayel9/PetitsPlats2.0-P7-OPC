@@ -105,3 +105,43 @@ const qtyRecipe = document.querySelectorAll('.recipe_card').length;
 console.log(qtyRecipe);
 const qtyRecipeElement = document.querySelector('.result_counter');
 qtyRecipeElement.textContent = `${qtyRecipe} recettes`;
+
+// Sélectionnez la barre de recherche et l'icône de croix
+const searchBar = document.querySelector('.header_container-search-bar input');
+const clearIcon = document.createElement('span');
+clearIcon.className = 'fa-solid fa-xmark';
+
+// Ajoutez l'icône de croix à la barre de recherche
+searchBar.parentNode.appendChild(clearIcon);
+
+// Cachez l'icône de croix par défaut
+clearIcon.style.display = 'none';
+
+// Ajoutez un écouteur d'événements 'input' à la barre de recherche
+searchBar.addEventListener('input', function() {
+    // Si la barre de recherche contient du texte, affichez l'icône de croix
+    if (searchBar.value) {
+        clearIcon.style.display = 'block';
+    } else {
+        clearIcon.style.display = 'none';
+    }
+});
+
+// Ajoutez un écouteur d'événements 'click' à l'icône de croix
+clearIcon.addEventListener('click', function() {
+    // Effacez le contenu de la barre de recherche
+    searchBar.value = '';
+
+    // Cachez l'icône de croix
+    clearIcon.style.display = 'none';
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const inputElements = document.querySelectorAll('input');
+
+    // Parcourez tous les éléments d'entrée et définissez leur valeur sur une chaîne vide
+    inputElements.forEach(input => {
+        input.value = '';
+    });
+});
+

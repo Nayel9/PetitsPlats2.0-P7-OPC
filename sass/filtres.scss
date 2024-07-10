@@ -19,7 +19,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    gap: 40px;
+    gap: 30px;
 
     .filtre{
       position: relative;
@@ -48,9 +48,16 @@
       font-size: 14px;
       font-weight: 400;
       color: #EDEDED;
+      margin: 10px 20px;
+      border: #EDEDED 2px solid;
+      span{
+        position: absolute;
+        right: 60px;
+        color: lightgray;
+        font-size: 18px;
+        cursor: pointer;
 
-
-
+      }
 
       .fa-search{
         position: absolute;
@@ -59,9 +66,9 @@
       }
 
       input{
-        border: #EDEDED 2px solid;
         height: 36px;
-        width: 100%;
+        width: 70%;
+        font-size: 18px;
       }
     }
   }
@@ -93,20 +100,42 @@
     flex-direction: column;
     justify-content: start;
     align-items: start;
-    gap: 20px;
+    gap: 2px;
     padding-right: 5px;
     background-color: #FFFFFF;
     cursor: pointer;
     overflow-y: scroll;
     text-transform: capitalize;
-    p{
-      padding: 10px 0;
+    border-radius: 0 0 10px 10px;
+    .item_name{
+      padding: 15px 20px;
       width: 100%;
       font-size: 18px;
     }
-    p:hover{
+    .item_name_selected{
+      padding: 15px 20px;
+      width: 100%;
+      font-size: 18px;
       background-color: #FFD15B;
-      padding: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      .circle_close_icon{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #000000;
+        border-radius: 50%;
+        height: 17px;
+        width: 17px;
+        i{
+          color: #FFD15B;
+          font-size: 10px;
+        }
+      }
+    }
+    .item_name:hover{
+      background-color: #FFD15B;
+      padding: 15px 20px;
       width: 100%;
 
     }
@@ -118,7 +147,7 @@
   flex-direction: column;
   gap: 15px;
   width: 220px;
-  padding: 10px 20px 10px 20px;
+  //padding: 10px 20px 10px 20px;
   background-color: #FFFFFF;
   position: absolute;
   top: 45px;
@@ -145,6 +174,7 @@
     height: 53px;
     font-size: 18px;
     padding: 0 20px;
+    text-transform: capitalize;
   }
 }
 
@@ -155,30 +185,52 @@
       padding: 0 4%;
       .filters_categories{
         .filtre{
-           p {
-             font-size: 38px;
-           }
+          width: 320px;
+          .option {
+          span{
+            font-size: 30px;
+            right: 75px;
+
+          }
+            .fa-search {
+              right: 40px;
+              top: 35px;
+              font-size: 26px;
+            }
+          }
           .dropdown{
             font-size: 38px;
             width: auto;
             height: auto;
             padding: 20px 38px;
             gap: 15px;
-            border-radius: 15px;
           }
           .list_appareils, .list_ustensiles, .list_ingredients{
             width: 100%;
-            top: 60px;
-            padding: 40px;
-            height: 490px;
+            top: 65px;
+            padding: 10px;
+            height: 800px;
+            border-radius: 15px;
             input{
               height: 50px;
               width: 100%;
-              font-size: 38px;
+              font-size: 32px;
+            }
+            .item_name_selected{
+              font-size: 28px;
+              align-items: center;
+              .circle_close_icon{
+                height: 28px;
+                width: 28px;
+                i{
+                  color: #FFD15B;
+                  font-size: 16px;
+                }
+              }
             }
             .list_name_ingredient, .list_name_appareils, .list_name_ustensiles{
-              p{
-                font-size: 38px;
+              .item_name{
+                font-size: 28px;
               }
             }
           }
@@ -195,7 +247,7 @@
       row-gap: 25px;
       column-gap: 30px;
       .selected_option{
-        width: auto;
+        width: 320px;
         height: auto;
         font-size: 38px;
         padding: 10px 20px;

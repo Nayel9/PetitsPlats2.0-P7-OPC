@@ -138,7 +138,7 @@
     height: 800px;
   }
   .recipe_container .recipe_card_time {
-    left: 1050px;
+    left: 1150px;
     font-size: 32px;
     padding: 25px;
     border-radius: 30px;
@@ -181,7 +181,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 40px;
+  gap: 30px;
 }
 .recipe_filters .filters_categories .filtre {
   position: relative;
@@ -208,6 +208,15 @@
   font-size: 14px;
   font-weight: 400;
   color: #EDEDED;
+  margin: 10px 20px;
+  border: #EDEDED 2px solid;
+}
+.recipe_filters .filters_categories .option span {
+  position: absolute;
+  right: 60px;
+  color: lightgray;
+  font-size: 18px;
+  cursor: pointer;
 }
 .recipe_filters .filters_categories .option .fa-search {
   position: absolute;
@@ -215,9 +224,9 @@
   top: 20px;
 }
 .recipe_filters .filters_categories .option input {
-  border: #EDEDED 2px solid;
   height: 36px;
-  width: 100%;
+  width: 70%;
+  font-size: 18px;
 }
 .recipe_filters .result_counter {
   font-family: "Anton", sans-serif;
@@ -244,21 +253,43 @@
   flex-direction: column;
   justify-content: start;
   align-items: start;
-  gap: 20px;
+  gap: 2px;
   padding-right: 5px;
   background-color: #FFFFFF;
   cursor: pointer;
   overflow-y: scroll;
   text-transform: capitalize;
+  border-radius: 0 0 10px 10px;
 }
-.list_name_ingredient p, .list_name_appareils p, .list_name_ustensiles p {
-  padding: 10px 0;
+.list_name_ingredient .item_name, .list_name_appareils .item_name, .list_name_ustensiles .item_name {
+  padding: 15px 20px;
   width: 100%;
   font-size: 18px;
 }
-.list_name_ingredient p:hover, .list_name_appareils p:hover, .list_name_ustensiles p:hover {
+.list_name_ingredient .item_name_selected, .list_name_appareils .item_name_selected, .list_name_ustensiles .item_name_selected {
+  padding: 15px 20px;
+  width: 100%;
+  font-size: 18px;
   background-color: #FFD15B;
-  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.list_name_ingredient .item_name_selected .circle_close_icon, .list_name_appareils .item_name_selected .circle_close_icon, .list_name_ustensiles .item_name_selected .circle_close_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000000;
+  border-radius: 50%;
+  height: 17px;
+  width: 17px;
+}
+.list_name_ingredient .item_name_selected .circle_close_icon i, .list_name_appareils .item_name_selected .circle_close_icon i, .list_name_ustensiles .item_name_selected .circle_close_icon i {
+  color: #FFD15B;
+  font-size: 10px;
+}
+.list_name_ingredient .item_name:hover, .list_name_appareils .item_name:hover, .list_name_ustensiles .item_name:hover {
+  background-color: #FFD15B;
+  padding: 15px 20px;
   width: 100%;
 }
 
@@ -267,7 +298,6 @@
   flex-direction: column;
   gap: 15px;
   width: 220px;
-  padding: 10px 20px 10px 20px;
   background-color: #FFFFFF;
   position: absolute;
   top: 45px;
@@ -294,6 +324,7 @@
   height: 53px;
   font-size: 18px;
   padding: 0 20px;
+  text-transform: capitalize;
 }
 
 @media (max-width: 426px) {
@@ -303,8 +334,17 @@
   .filters_section .recipe_filters {
     padding: 0 4%;
   }
-  .filters_section .recipe_filters .filters_categories .filtre p {
-    font-size: 38px;
+  .filters_section .recipe_filters .filters_categories .filtre {
+    width: 320px;
+  }
+  .filters_section .recipe_filters .filters_categories .filtre .option span {
+    font-size: 30px;
+    right: 75px;
+  }
+  .filters_section .recipe_filters .filters_categories .filtre .option .fa-search {
+    right: 40px;
+    top: 35px;
+    font-size: 26px;
   }
   .filters_section .recipe_filters .filters_categories .filtre .dropdown {
     font-size: 38px;
@@ -312,21 +352,33 @@
     height: auto;
     padding: 20px 38px;
     gap: 15px;
-    border-radius: 15px;
   }
   .filters_section .recipe_filters .filters_categories .filtre .list_appareils, .filters_section .recipe_filters .filters_categories .filtre .list_ustensiles, .filters_section .recipe_filters .filters_categories .filtre .list_ingredients {
     width: 100%;
-    top: 60px;
-    padding: 40px;
-    height: 490px;
+    top: 65px;
+    padding: 10px;
+    height: 800px;
+    border-radius: 15px;
   }
   .filters_section .recipe_filters .filters_categories .filtre .list_appareils input, .filters_section .recipe_filters .filters_categories .filtre .list_ustensiles input, .filters_section .recipe_filters .filters_categories .filtre .list_ingredients input {
     height: 50px;
     width: 100%;
-    font-size: 38px;
+    font-size: 32px;
   }
-  .filters_section .recipe_filters .filters_categories .filtre .list_appareils .list_name_ingredient p, .filters_section .recipe_filters .filters_categories .filtre .list_appareils .list_name_appareils p, .filters_section .recipe_filters .filters_categories .filtre .list_appareils .list_name_ustensiles p, .filters_section .recipe_filters .filters_categories .filtre .list_ustensiles .list_name_ingredient p, .filters_section .recipe_filters .filters_categories .filtre .list_ustensiles .list_name_appareils p, .filters_section .recipe_filters .filters_categories .filtre .list_ustensiles .list_name_ustensiles p, .filters_section .recipe_filters .filters_categories .filtre .list_ingredients .list_name_ingredient p, .filters_section .recipe_filters .filters_categories .filtre .list_ingredients .list_name_appareils p, .filters_section .recipe_filters .filters_categories .filtre .list_ingredients .list_name_ustensiles p {
-    font-size: 38px;
+  .filters_section .recipe_filters .filters_categories .filtre .list_appareils .item_name_selected, .filters_section .recipe_filters .filters_categories .filtre .list_ustensiles .item_name_selected, .filters_section .recipe_filters .filters_categories .filtre .list_ingredients .item_name_selected {
+    font-size: 28px;
+    align-items: center;
+  }
+  .filters_section .recipe_filters .filters_categories .filtre .list_appareils .item_name_selected .circle_close_icon, .filters_section .recipe_filters .filters_categories .filtre .list_ustensiles .item_name_selected .circle_close_icon, .filters_section .recipe_filters .filters_categories .filtre .list_ingredients .item_name_selected .circle_close_icon {
+    height: 28px;
+    width: 28px;
+  }
+  .filters_section .recipe_filters .filters_categories .filtre .list_appareils .item_name_selected .circle_close_icon i, .filters_section .recipe_filters .filters_categories .filtre .list_ustensiles .item_name_selected .circle_close_icon i, .filters_section .recipe_filters .filters_categories .filtre .list_ingredients .item_name_selected .circle_close_icon i {
+    color: #FFD15B;
+    font-size: 16px;
+  }
+  .filters_section .recipe_filters .filters_categories .filtre .list_appareils .list_name_ingredient .item_name, .filters_section .recipe_filters .filters_categories .filtre .list_appareils .list_name_appareils .item_name, .filters_section .recipe_filters .filters_categories .filtre .list_appareils .list_name_ustensiles .item_name, .filters_section .recipe_filters .filters_categories .filtre .list_ustensiles .list_name_ingredient .item_name, .filters_section .recipe_filters .filters_categories .filtre .list_ustensiles .list_name_appareils .item_name, .filters_section .recipe_filters .filters_categories .filtre .list_ustensiles .list_name_ustensiles .item_name, .filters_section .recipe_filters .filters_categories .filtre .list_ingredients .list_name_ingredient .item_name, .filters_section .recipe_filters .filters_categories .filtre .list_ingredients .list_name_appareils .item_name, .filters_section .recipe_filters .filters_categories .filtre .list_ingredients .list_name_ustensiles .item_name {
+    font-size: 28px;
   }
   .filters_section .recipe_filters .result_counter {
     font-size: 42px;
@@ -339,7 +391,7 @@
     column-gap: 30px;
   }
   .filters_section .sort_options .selected_option {
-    width: auto;
+    width: 320px;
     height: auto;
     font-size: 38px;
     padding: 10px 20px;
@@ -413,10 +465,20 @@ a {
   background-color: white;
   border-radius: 10px;
   margin-bottom: 20px;
+  position: relative;
+}
+.header_container-search-bar span {
+  position: absolute;
+  right: 75px;
+  color: lightgray;
+  font-size: 20px;
 }
 .header_container-search-bar input {
-  width: 100%;
+  width: 90%;
+  height: 100%;
   padding-left: 40px;
+  border-radius: 10px;
+  font-size: 20px;
 }
 .header_container-search button {
   background-color: #000000;
@@ -429,6 +491,10 @@ a {
   margin-right: 10px;
   cursor: pointer;
   border: none;
+}
+.header_container-search button:hover {
+  background-color: #FFD15B;
+  color: black;
 }
 .header_container-search h1 {
   font-size: 44px;
@@ -459,6 +525,10 @@ a {
   }
   .header_container-search .header_container-search-bar {
     margin: 0;
+    width: 85%;
+  }
+  .header_container-search .header_container-search-bar span {
+    font-size: 40px;
   }
 }
 

@@ -68,10 +68,21 @@ a{
       background-color: white;
       border-radius: 10px;
       margin-bottom: 20px;
+      position: relative;
+      span{
+        position: absolute;
+        right: 75px;
+        color: lightgray;
+        font-size: 20px;
+
+      }
     }
     &-bar input{
-      width: 100%;
+      width: 90%;
+      height: 100%;
       padding-left: 40px;
+      border-radius: 10px;
+      font-size: 20px;
     }
     & button{
       background-color: #000000;
@@ -84,6 +95,10 @@ a{
       margin-right: 10px;
       cursor: pointer;
       border: none;
+    }
+    & button:hover{
+      background-color: #FFD15B;
+      color: black;
     }
   }
   &-search h1{
@@ -118,6 +133,11 @@ a{
 
     .header_container-search-bar {
       margin: 0;
+      width: 85%;
+      span{
+        font-size: 40px;
+
+      }
     }
   }
 }

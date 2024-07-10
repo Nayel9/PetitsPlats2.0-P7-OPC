@@ -8,43 +8,89 @@ function handleFilterClick(filter, option, list, dropdownIcon, items, className)
     filter.addEventListener('click', function(event) {
         event.stopPropagation();
         if (option.style.display === 'none') {
-            setTimeout(function() {
-                option.style.display = 'flex';
-                list.style.display = 'flex';
-                dropdownIcon.classList.add('open-rotate')
-                dropdownIcon.classList.remove('close-rotate')
+            option.style.display = 'flex';
+            list.style.display = 'flex';
+            dropdownIcon.classList.add('open-rotate')
+            dropdownIcon.classList.remove('close-rotate')
 
-                let listName = document.querySelector('.' + className);
-                if (!listName) {
-                    listName = document.createElement('div');
-                    listName.className = className;
-                    list.appendChild(listName);
+            let listName = document.querySelector('.' + className);
+            if (!listName) {
+                listName = document.createElement('div');
+                listName.className = className;
+                list.appendChild(listName);
+            } else {
+                listName.innerHTML = '';
+            }
+
+            items.forEach(item => {
+                // const name = document.querySelectorAll('.item_name');
+
+                const name = document.createElement('div');
+                // Vérifiez si l'élément est dans selectedFilters
+                if (selectedFilters.has(item)) {
+                    updateListItem(name, item);
                 } else {
-
-                    listName.innerHTML = '';
+                    name.className = 'item_name';
                 }
+                listName.appendChild(name);
+                name.textContent = item;
 
-                items.forEach(item => {
-                    const name = document.createElement('p');
-                    listName.appendChild(name);
-                    name.textContent = item;
-
+                // Vérifiez si un écouteur d'événement a déjà été ajouté
+                if (!name.hasClickListener) {
                     name.addEventListener('click', function(event) {
+                        event.stopPropagation();
                         const clickedItem = event.target.textContent;
+                        console.log(clickedItem);
                         if (!selectedFilters.has(clickedItem)) {
+                            updateListItem(name, clickedItem);
                             selectedFilters.add(clickedItem);
                             updateSelectedOption(clickedItem);
+                        } else {
+                            name.className = 'item_name'; // Réinitialise la classe CSS de name
+                            selectedFilters.delete(clickedItem); // Supprime l'élément de selectedFilters
+                            const circleCloseIcon = name.querySelector('.circle_close_icon');
+                            if (circleCloseIcon) {
+                                circleCloseIcon.remove(); // Supprime circleCloseIcon
+                            }
+                            const selectedOption = document.querySelector('.selected_option');
+                            if (selectedOption) {
+                                selectedOption.remove(); // Supprime selectedOption
+                            }
                         }
                     });
-                });
-            }, 0);
+
+                    // Marquez l'élément comme ayant un écouteur d'événement
+                    name.hasClickListener = true;
+                }
+            });
         } else {
-            setTimeout(function() {
-                option.style.display = 'none';
-                list.style.display = 'none';
-                dropdownIcon.classList.remove('open-rotate')
-                dropdownIcon.classList.add('close-rotate')
-            }, 0);
+            option.style.display = 'none';
+            list.style.display = 'none';
+            dropdownIcon.classList.remove('open-rotate')
+            dropdownIcon.classList.add('close-rotate')
+        }
+    });
+}
+function updateListItem(name, item) {
+    const circleCloseIcon = document.createElement('div');
+    const icon = document.createElement('i')
+    icon.className = 'fa-solid fa-xmark';
+    circleCloseIcon.appendChild(icon);
+    circleCloseIcon.className = 'circle_close_icon';
+    name.appendChild(circleCloseIcon);
+    name.className = 'item_name_selected';
+
+    circleCloseIcon.addEventListener('click', function(event) {
+        event.stopPropagation()
+        if (name.className === 'item_name_selected') {
+            name.className = 'item_name';
+            selectedFilters.delete(item);
+            circleCloseIcon.remove();
+        }
+
+        const selectedOption = document.querySelector('.selected_option');
+        if (selectedOption) {
+            selectedOption.remove();
         }
     });
 }
@@ -122,5 +168,39 @@ const inputElements = document.querySelectorAll('.option input');
 inputElements.forEach(input => {
     input.addEventListener('click', function(event) {
         event.stopPropagation();
+    });
+});
+
+// Sélectionnez toutes les barres de recherche
+const searchBarOptions = document.querySelectorAll('.option input');
+
+searchBarOptions.forEach(searchBarOption => {
+    const clearOption = document.createElement('span');
+    clearOption.className = 'fa-solid fa-xmark';
+
+    // Ajoutez l'icône de croix à la barre de recherche
+    searchBarOption.parentNode.appendChild(clearOption);
+
+    // Cachez l'icône de croix par défaut
+    clearOption.style.display = 'none';
+
+    // Ajoutez un écouteur d'événements 'input' à la barre de recherche
+    searchBarOption.addEventListener('input', function() {
+        // Si la barre de recherche contient du texte, affichez l'icône de croix
+        if (searchBarOption.value) {
+            clearOption.style.display = 'block';
+        } else {
+            clearOption.style.display = 'none';
+        }
+    });
+
+    // Ajoutez un écouteur d'événements 'click' à l'icône de croix
+    clearOption.addEventListener('click', function(event) {
+        event.stopPropagation()
+        // Effacez le contenu de la barre de recherche
+        searchBarOption.value = '';
+
+        // Cachez l'icône de croix
+        clearOption.style.display = 'none';
     });
 });
