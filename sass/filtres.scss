@@ -111,6 +111,21 @@
       padding: 15px 20px;
       width: 100%;
       font-size: 18px;
+      display: flex;
+      justify-content: space-between;
+      //.circle_close_icon{
+      //  display: none;
+      //  align-items: center;
+      //  justify-content: center;
+      //  background-color: #000000;
+      //  border-radius: 50%;
+      //  height: 17px;
+      //  width: 17px;
+      //  i{
+      //    color: #FFD15B;
+      //    font-size: 10px;
+      //  }
+      //}
     }
     .item_name_selected{
       padding: 15px 20px;
@@ -132,6 +147,8 @@
           font-size: 10px;
         }
       }
+
+
     }
     .item_name:hover{
       background-color: #FFD15B;

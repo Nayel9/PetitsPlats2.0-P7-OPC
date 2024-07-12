@@ -265,6 +265,8 @@
   padding: 15px 20px;
   width: 100%;
   font-size: 18px;
+  display: flex;
+  justify-content: space-between;
 }
 .list_name_ingredient .item_name_selected, .list_name_appareils .item_name_selected, .list_name_ustensiles .item_name_selected {
   padding: 15px 20px;
