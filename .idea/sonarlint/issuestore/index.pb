@@ -16,8 +16,6 @@ A
 sass/filtres.scss,6\1\61b83c52e41414e67d0b56e8cb4e5b956271eedc
 ?
 script/index.js,0\f\0f75bf085e91b7efd41ff22a229f4b0c583faba8
-L
-script/templates/dropdown.js,f\4\f4dfdd725c93b2c5ded5ac8985847fb15fbe3e0f
 w
 G.idea/sonarlint/issuestore/c/5/c5bce62f22919f899a29895af0498ee30748c4ef,9\f\9f631b17bb7fd57e41ad76b29d96e104e22f20b3
 B
@@ -38,3 +36,15 @@ Q.idea/sonarlint/securityhotspotstore/b/8/b85700169b464de54c986b1358f5b9d5160f98
 -.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
 w
 G.idea/sonarlint/issuestore/b/8/b85700169b464de54c986b1358f5b9d5160f98af,f\3\f3ccdbcee4e2696cdb6f35250ea2f76c022c6ce7
+N
+script/templates/dropdownv2.js,b\e\be6d7b30aa4f05660c198ac7fb40ab10c01c9f99
+P
+ script/templates/initdropdown.js,6\1\61552ac13f69d81e8153fd379f373dab4feaba84
+H
+script/searching/tags.js,2\5\25f70d7d2908f22f7010e6035be7706bbfdabdef
+J
+script/searching/search.js,3\2\320cd6785475c62a1a467aca2bd7e6820d6e81b9
+O
+script/searching/tags-search.js,b\1\b18f5bb3904587df6bbc15accd473391c90bc3d2
+O
+script/searching/main-search.js,f\4\f40154c3130b0b06d32de2b51fbcdae1b73297cf

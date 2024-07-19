@@ -7,6 +7,10 @@
     box-sizing: border-box;
     font-family: "Manrope", sans-serif;
 }
+:focus{
+    outline: none;
+}
+
 input[type="text"]{
     border: none;
     outline: none;
@@ -74,6 +78,7 @@ a{
         right: 75px;
         color: lightgray;
         font-size: 20px;
+        cursor: pointer;
 
       }
     }

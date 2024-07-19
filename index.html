@@ -25,7 +25,7 @@
                 <h1>CHERCHEZ PARMI PLUS DE 1500 RECETTES<br> DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</h1>
                 <label class="header_container-search-bar" for="search_bar">
                 <input id="search_bar" type="text" placeholder="Rechercher une recette, un ingredient, ...">
-                <button class="header_container-search-button"><i class="fas fa-search"></i></button>
+                <button class="header_container-search-button" id="search-button"><i class="fas fa-search"></i></button>
                 </label>
             </div>
     </header>
@@ -41,8 +41,9 @@
                     </div>
                     <div class="list list_ingredients">
                         <div class="option option_ingredients">
-                            <label for="ingredients"><i class="fas fa-search"></i></label>
-                            <input type="text" id="ingredients">
+                            <label for="ingredients"><i class="fas fa-search"></i>
+                                <input type="text" class="tagSearch" id="ingredients">
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -55,8 +56,9 @@
                     </div>
                     <div class="list list_appareils">
                         <div class="option option_appareils">
-                            <label for="appareils"><i class="fas fa-search"></i></label>
-                            <input type="text" id="appareils">
+                            <label for="appareils"><i class="fas fa-search"></i>
+                                <input type="text" class="tagSearch" id="appareils">
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -69,8 +71,9 @@
                     </div>
                     <div class="list list_ustensiles">
                         <div class="option option_ustensiles">
-                            <label for="ustensiles"><i class="fas fa-search"></i></label>
-                            <input type="text" id="ustensiles">
+                            <label for="ustensiles"><i class="fas fa-search"></i>
+                                <input type="text" class="tagSearch" id="ustensiles">
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -88,5 +91,8 @@
 <script src="script/data/recipes.js"></script>
 <script src="script/index.js"></script>
 <script src="script/templates/dropdownv2.js"></script>
+<script src="script/searching/main-search.js"></script>
+<script src="script/searching/tags-search.js"></script>
+<script src="script/templates/initdropdown.js"></script>
 </body>
 </html>

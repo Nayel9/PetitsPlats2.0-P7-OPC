@@ -1,21 +1,37 @@
 class Dropdown {
-    constructor(filter, option, list, dropdownIcon, items, className) {
+    constructor(filter, option, list, dropdownIcon, items) {
         this.filter = filter;
         this.option = option;
         this.list = list;
         this.dropdownIcon = dropdownIcon;
         this.items = items;
-        this.className = className;
         this.selectedFilters = new Set();
+        this.list.style.display = 'none';
         this.option.style.display = 'none';
+        this.isOpen = false;
         this.initSearchBarOptions();
+        this.initBlur();
     }
+
+
+    initBlur() {
+    this.list.addEventListener('blur', (event) => {
+        // Si l'élément qui reçoit le focus est l'input, ne fermez pas la liste
+        if (this.list.contains(event.relatedTarget)) {
+            return;
+        }
+        this.closeDropdown();
+    });
+}
 
     openDropdown() {
         this.option.style.display = 'flex';
         this.list.style.display = 'flex';
         this.dropdownIcon.classList.add('open-rotate');
         this.dropdownIcon.classList.remove('close-rotate');
+        this.list.setAttribute('tabindex', '0');
+        this.list.focus();
+        this.isOpen = true;
     }
 
     closeDropdown() {
@@ -23,56 +39,79 @@ class Dropdown {
         this.list.style.display = 'none';
         this.dropdownIcon.classList.remove('open-rotate');
         this.dropdownIcon.classList.add('close-rotate');
+        this.list.blur();
+        this.isOpen = false;
     }
 
-    quitDropdown() {
-        document.addEventListener('click', (event) => {
-            // Vérifiez si l'événement de clic provient d'un élément de la liste
-            if (this.list.contains(event.target)) {
-                // Si c'est le cas, arrêtez la propagation de l'événement
-                event.stopPropagation();
-            } else if (!this.filter.contains(event.target)) {
-                this.closeDropdown();
-            }
-        });
-    }
 
     toggleDropdown() {
-        if (this.option.style.display === 'none') {
-            this.openDropdown();
-        } else {
+        if (this.isOpen) { // Modifiez cette ligne
             this.closeDropdown();
+        } else {
+            this.openDropdown();
         }
     }
+
 
     initDropdown() {
-        this.filter.addEventListener('click', () => this.toggleDropdown());
-    }
+    let isMouseDown = false;
+
+    this.filter.addEventListener('mousedown', (event) => {
+        event.preventDefault();
+        isMouseDown = true;
+    });
+
+    this.filter.addEventListener('mouseup', (event) => {
+        event.preventDefault();
+        if (isMouseDown) {
+            this.toggleDropdown();
+            isMouseDown = false;
+        }
+    });
+}
+
+    // createListItem() {
+    //     let listName = document.querySelector('.' + this.className);
+    //     if (!listName) {
+    //         listName = document.createElement('div');
+    //         listName.className = this.className;
+    //         this.list.appendChild(listName);
+    //     } else {
+    //         listName.innerHTML = '';
+    //     }
+    //
+    //     this.items.forEach(item => {
+    //         const name = document.createElement('div');
+    //         name.className = 'item_name';
+    //         name.textContent = item;
+    //         listName.appendChild(name);
+    //
+    //         name.addEventListener('click', (event) => {
+    //             event.stopPropagation();
+    //             this.createSelectedOption(item, name);
+    //             this.createListedOption(item, name); // Passez name ici
+    //         });
+    //
+    //     });
+    //
+    // }
 
     createListItem() {
-        let listName = document.querySelector('.' + this.className);
-        if (!listName) {
-            listName = document.createElement('div');
-            listName.className = this.className;
-            this.list.appendChild(listName);
-        } else {
-            listName.innerHTML = '';
-        }
+    this.items.forEach(item => {
+        const name = document.createElement('div');
+        name.className = 'item_name';
+        name.textContent = item;
 
-        this.items.forEach(item => {
-            const name = document.createElement('div');
-            name.className = 'item_name';
-            name.textContent = item;
-            listName.appendChild(name);
+        // Insérez name après this.option
+        this.option.parentNode.appendChild(name);
 
-            name.addEventListener('click', () => {
-                this.createSelectedOption(item, name);
-                this.createListedOption(item, name); // Passez name ici
-            });
-
+        name.addEventListener('click', (event) => {
+            event.stopPropagation();
+            this.createSelectedOption(item, name);
+            this.createListedOption(item, name); // Passez name ici
         });
-
-    }
+    });
+}
 
     createListedOption(item, name) { // Ajoutez name comme paramètre ici
         name.className = 'item_name_selected';
@@ -144,13 +183,21 @@ class Dropdown {
             input.addEventListener('click', function(event) {
                 event.stopPropagation();
             });
+
+            // Ajoutez un gestionnaire d'événements blur ou focusout
+            input.addEventListener('blur', (event) => {
+                if (this.list.contains(event.relatedTarget)) {
+                    return;
+                }
+                this.closeDropdown();
+            });
         });
 
         const searchBarOptions = this.option.querySelectorAll('input');
 
         searchBarOptions.forEach(searchBarOption => {
             const clearOption = document.createElement('span');
-            clearOption.className = 'fa-solid fa-xmark';
+            clearOption.className = 'fa-solid fa-xmark clear-button';
 
             searchBarOption.parentNode.appendChild(clearOption);
 
@@ -166,6 +213,7 @@ class Dropdown {
 
             clearOption.addEventListener('click', function(event) {
                 event.stopPropagation()
+                clearSearch();
                 searchBarOption.value = '';
                 clearOption.style.display = 'none';
             });
@@ -174,58 +222,3 @@ class Dropdown {
 
 }
 
-// Remplissez d'abord les ensembles
-const uniqueIngredients = new Set();
-const uniqueAppliances = new Set();
-const uniqueUstensils = new Set();
-
-recipes.forEach(recipe => {
-    recipe.ingredients.forEach(ingredient => {
-        uniqueIngredients.add(ingredient.ingredient);
-    });
-    uniqueAppliances.add(recipe.appliance);
-    recipe.ustensils.forEach(ustensile => {
-        uniqueUstensils.add(ustensile);
-    });
-});
-
-// Ensuite, créez vos instances de Dropdown
-const dropdownIngredients = new Dropdown(
-    document.querySelector('.filtre_ingredients'),
-    document.querySelector('.option_ingredients'),
-    document.querySelector('.list_ingredients'),
-    document.querySelector('.dropdown-icon-ingredients'),
-    Array.from(uniqueIngredients), // Convertissez l'ensemble en tableau
-    'list_name_ingredient'
-);
-
-const dropdownAppliances = new Dropdown(
-    document.querySelector('.filtre_appareils'),
-    document.querySelector('.option_appareils'),
-    document.querySelector('.list_appareils'),
-    document.querySelector('.dropdown-icon-appareils'),
-    Array.from(uniqueAppliances), // Convertissez l'ensemble en tableau
-    'list_name_appareils'
-);
-
-const dropdownUstensils = new Dropdown(
-    document.querySelector('.filtre_ustensiles'),
-    document.querySelector('.option_ustensiles'),
-    document.querySelector('.list_ustensiles'),
-    document.querySelector('.dropdown-icon-ustensiles'),
-    Array.from(uniqueUstensils), // Convertissez l'ensemble en tableau
-    'list_name_ustensiles'
-);
-
-// Enfin, appelez initDropdown et createListItem
-dropdownIngredients.initDropdown();
-dropdownIngredients.createListItem();
-dropdownIngredients.quitDropdown();
-
-dropdownAppliances.initDropdown();
-dropdownAppliances.createListItem();
-dropdownAppliances.quitDropdown();
-
-dropdownUstensils.initDropdown();
-dropdownUstensils.createListItem();
-dropdownUstensils.quitDropdown();

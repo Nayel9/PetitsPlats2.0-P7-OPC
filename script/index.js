@@ -110,6 +110,7 @@ qtyRecipeElement.textContent = `${qtyRecipe} recettes`;
 const searchBar = document.querySelector('.header_container-search-bar input');
 const clearIcon = document.createElement('span');
 clearIcon.className = 'fa-solid fa-xmark';
+clearIcon.id = 'clear-button';
 
 // Ajoutez l'icône de croix à la barre de recherche
 searchBar.parentNode.appendChild(clearIcon);

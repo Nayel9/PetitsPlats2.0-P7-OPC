@@ -23,6 +23,8 @@
 
     .filtre{
       position: relative;
+      background-color: #FFFFFF;
+      border-radius: 10px;
     }
 
     .dropdown{
@@ -48,27 +50,36 @@
       font-size: 14px;
       font-weight: 400;
       color: #EDEDED;
-      margin: 10px 20px;
-      border: #EDEDED 2px solid;
+      padding: 0 20px 10px 20px;
+      position: sticky;
+      top: -1px;
+      background-color: #FFFFFF;
+      z-index: 10000;
       span{
         position: absolute;
-        right: 60px;
+        right: 52px;
+        top: 10px;
         color: lightgray;
         font-size: 18px;
         cursor: pointer;
+        z-index: 10000;
 
       }
 
       .fa-search{
         position: absolute;
         right: 30px;
-        top: 20px;
+        top:12px;
       }
-
-      input{
-        height: 36px;
-        width: 70%;
-        font-size: 18px;
+      label{
+        height: 100%;
+        width: 100%;
+        border: #EDEDED 2px solid;
+        input{
+          height: 36px;
+          width: 70%;
+          font-size: 18px;
+        }
       }
     }
   }
@@ -95,37 +106,28 @@
   transition: transform 350ms ease-out;
 }
 
-.list_name_ingredient, .list_name_appareils, .list_name_ustensiles{
+.list {
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: start;
     gap: 2px;
     padding-right: 5px;
+    padding-top: -1px;
     background-color: #FFFFFF;
     cursor: pointer;
     overflow-y: scroll;
     text-transform: capitalize;
     border-radius: 0 0 10px 10px;
+    width: 220px;
+    position: absolute;
+    top: 48px;
+    z-index: 1000;
+    height: 320px;
     .item_name{
       padding: 15px 20px;
       width: 100%;
       font-size: 18px;
-      display: flex;
-      justify-content: space-between;
-      //.circle_close_icon{
-      //  display: none;
-      //  align-items: center;
-      //  justify-content: center;
-      //  background-color: #000000;
-      //  border-radius: 50%;
-      //  height: 17px;
-      //  width: 17px;
-      //  i{
-      //    color: #FFD15B;
-      //    font-size: 10px;
-      //  }
-      //}
     }
     .item_name_selected{
       padding: 15px 20px;
@@ -134,6 +136,8 @@
       background-color: #FFD15B;
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      position: relative;
       .circle_close_icon{
         display: flex;
         align-items: center;
@@ -142,6 +146,9 @@
         border-radius: 50%;
         height: 17px;
         width: 17px;
+        position: absolute;
+        right: 15px;
+        top: 18px;
         i{
           color: #FFD15B;
           font-size: 10px;
@@ -159,19 +166,29 @@
 
 }
 
-.list_ingredients, .list_appareils, .list_ustensiles{
-  display: none;
-  flex-direction: column;
-  gap: 15px;
-  width: 220px;
-  //padding: 10px 20px 10px 20px;
-  background-color: #FFFFFF;
-  position: absolute;
-  top: 45px;
-  border-radius: 0 0 10px 10px;
-  z-index: 1000;
-  height: 320px;
+.error-message, #error-message{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
+  font-size: 18px;
+  padding: 20px 20px;
+  color: crimson;
 }
+
+//.list_ingredients, .list_appareils, .list_ustensiles{
+//  display: none;
+//  flex-direction: column;
+//  gap: 15px;
+//  width: 220px;
+//  //padding: 10px 20px 10px 20px;
+//  background-color: #FFFFFF;
+//  position: absolute;
+//  top: 45px;
+//  border-radius: 0 0 10px 10px;
+//  z-index: 1000;
+//  height: 320px;
+//}
 
 
 .sort_options{
@@ -207,11 +224,12 @@
           span{
             font-size: 30px;
             right: 75px;
+            top: 10px;
 
           }
             .fa-search {
-              right: 40px;
-              top: 35px;
+              right: 35px;
+              top: 15px;
               font-size: 26px;
             }
           }
@@ -222,16 +240,24 @@
             padding: 20px 38px;
             gap: 15px;
           }
-          .list_appareils, .list_ustensiles, .list_ingredients{
+          .list {
             width: 100%;
-            top: 65px;
-            padding: 10px;
+            top: 73px;
+            padding:0;
             height: 800px;
-            border-radius: 15px;
-            input{
-              height: 50px;
-              width: 100%;
-              font-size: 32px;
+            //border-radius: 15px;
+            label{
+
+              input{
+                height: 50px;
+                width: 100%;
+                font-size: 32px;
+              }
+            }
+
+            .item_name{
+              font-size: 28px;
+
             }
             .item_name_selected{
               font-size: 28px;
@@ -243,11 +269,6 @@
                   color: #FFD15B;
                   font-size: 16px;
                 }
-              }
-            }
-            .list_name_ingredient, .list_name_appareils, .list_name_ustensiles{
-              .item_name{
-                font-size: 28px;
               }
             }
           }
