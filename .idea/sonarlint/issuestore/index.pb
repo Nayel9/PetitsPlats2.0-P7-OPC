@@ -40,11 +40,9 @@ N
 script/templates/dropdownv2.js,b\e\be6d7b30aa4f05660c198ac7fb40ab10c01c9f99
 P
  script/templates/initdropdown.js,6\1\61552ac13f69d81e8153fd379f373dab4feaba84
-H
-script/searching/tags.js,2\5\25f70d7d2908f22f7010e6035be7706bbfdabdef
-J
-script/searching/search.js,3\2\320cd6785475c62a1a467aca2bd7e6820d6e81b9
 O
 script/searching/tags-search.js,b\1\b18f5bb3904587df6bbc15accd473391c90bc3d2
 O
 script/searching/main-search.js,f\4\f40154c3130b0b06d32de2b51fbcdae1b73297cf
+P
+ script/searching/tags-filters.js,4\4\44d231920547d22cb717aad99a6c2b17b793ad4c

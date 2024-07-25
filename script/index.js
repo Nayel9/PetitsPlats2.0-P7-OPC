@@ -1,9 +1,8 @@
 function createRecipeCard(recipe) {
-    // Créez un élément de carte
     const recipeCard = document.createElement('div');
     recipeCard.className = 'recipe_card';
+    recipeCard.id = recipe.id;
 
-    // Image de la recette
     const cardImg = document.createElement('div');
     cardImg.className = 'recipe_card_img';
     recipeCard.appendChild(cardImg);
@@ -11,18 +10,15 @@ function createRecipeCard(recipe) {
     cardImg.appendChild(img);
     img.src = `img/recettes/${recipe.image}`;
 
-    // Temps de préparation
     const recipeTime = document.createElement('div');
     recipeTime.className = 'recipe_card_time';
     recipeCard.appendChild(recipeTime);
     recipeTime.textContent = `${recipe.time} min`;
 
-    // Contenu de la recette
     const recipeContent = document.createElement('div');
     recipeContent.className = 'recipe_card_content';
     recipeCard.appendChild(recipeContent);
 
-    // Titre de la recette
     const containTitle = document.createElement('div');
     containTitle.className = 'recipe_card_title';
     recipeContent.appendChild(containTitle);
@@ -31,7 +27,6 @@ function createRecipeCard(recipe) {
     containTitle.appendChild(recipeTitle);
     recipeTitle.textContent = recipe.name;
 
-    // Description de la recette
     const recipeDescription = document.createElement('div');
     recipeDescription.className = 'recipe_card_description';
     recipeContent.appendChild(recipeDescription);
@@ -44,7 +39,6 @@ function createRecipeCard(recipe) {
     recipeDescription.appendChild(recipeDescriptionText);
     recipeDescriptionText.textContent = recipe.description;
 
-    // Ingrédients de la recette
     const recipeIngredients = document.createElement('div');
     recipeIngredients.className = 'recipe_card_ingredients';
     recipeContent.appendChild(recipeIngredients);
@@ -92,11 +86,10 @@ function createRecipeCard(recipe) {
     return recipeCard;
 }
 
-// Trouvez le conteneur où vous voulez ajouter les cartes de recettes
 const gridRecipe = document.querySelector('.recipe_container');
 
-// Parcourez les recettes et ajoutez chaque carte de recette au conteneur
 recipes.forEach(recipe => {
+    recipe.isDisplayed = true;
     const recipeCard = createRecipeCard(recipe);
     gridRecipe.appendChild(recipeCard);
 });
@@ -106,21 +99,16 @@ console.log(qtyRecipe);
 const qtyRecipeElement = document.querySelector('.result_counter');
 qtyRecipeElement.textContent = `${qtyRecipe} recettes`;
 
-// Sélectionnez la barre de recherche et l'icône de croix
 const searchBar = document.querySelector('.header_container-search-bar input');
 const clearIcon = document.createElement('span');
 clearIcon.className = 'fa-solid fa-xmark';
 clearIcon.id = 'clear-button';
 
-// Ajoutez l'icône de croix à la barre de recherche
 searchBar.parentNode.appendChild(clearIcon);
 
-// Cachez l'icône de croix par défaut
 clearIcon.style.display = 'none';
 
-// Ajoutez un écouteur d'événements 'input' à la barre de recherche
 searchBar.addEventListener('input', function() {
-    // Si la barre de recherche contient du texte, affichez l'icône de croix
     if (searchBar.value) {
         clearIcon.style.display = 'block';
     } else {
@@ -128,19 +116,15 @@ searchBar.addEventListener('input', function() {
     }
 });
 
-// Ajoutez un écouteur d'événements 'click' à l'icône de croix
 clearIcon.addEventListener('click', function() {
-    // Effacez le contenu de la barre de recherche
     searchBar.value = '';
 
-    // Cachez l'icône de croix
     clearIcon.style.display = 'none';
 });
 
 document.addEventListener('DOMContentLoaded', function() {
     const inputElements = document.querySelectorAll('input');
 
-    // Parcourez tous les éléments d'entrée et définissez leur valeur sur une chaîne vide
     inputElements.forEach(input => {
         input.value = '';
     });
