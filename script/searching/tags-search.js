@@ -13,14 +13,24 @@ searchBarUstensils.addEventListener('input', function() {
 });
 
 function searchTags(searchInput, tagClass, dropdown) {
-    if (searchInput.length < 3) {
-        return;
-    }
-
     let searchInputLower = searchInput.toLowerCase();
     let uniqueTags = new Set();
     let tags = document.querySelectorAll('.item_name');
     let found = false;
+
+    if (searchInput.length < 3) {
+        tags.forEach(tag => {
+            if (tag.closest('.list_' + dropdown)) {
+                tag.style.display = 'flex';
+            }
+        });
+
+        let errorMessage = document.querySelector('.list_' + dropdown + ' .error-message');
+        if (errorMessage) {
+            errorMessage.remove();
+        }
+        return;
+    }
 
     tags.forEach(tag => {
         if (tag.closest('.list_' + dropdown)) {
