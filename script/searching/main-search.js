@@ -105,10 +105,10 @@ function displayFilteredRecipes(filteredRecipes) {
     updateRecipeCount();
 }
 function displayAllRecipes() {
-    let recipes = document.querySelectorAll('.recipe_card');
-    recipes.forEach(recipe => {
-        recipe.style.display = 'flex';
-    });
+    let recipes = document.getElementsByClassName('recipe_card');
+    for (let i = 0; i < recipes.length; i++) {
+        recipes[i].style.display = 'flex';
+    }
     updateRecipeCount();
 }
 

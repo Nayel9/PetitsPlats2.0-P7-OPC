@@ -1,12 +1,18 @@
 let userChosenTags = [];
-
+let filteredRecipes = [];
 function filterRecipesByTags() {
-    let filteredRecipes = [];
+    filteredRecipes = [];
     resetDisplayProperty()
 
-    // Parcourir toutes les recettes
-    for (let i = 0; i < filteredRecipesByInput.length; i++) {
-        let recipe = filteredRecipesByInput[i];
+    let dataSource;
+    if (filteredRecipesByInput.length > 0) {
+        dataSource = filteredRecipesByInput;
+    } else {
+        dataSource = recipes;
+    }
+    // Parcourir toutes les recettes de la source de données sélectionnée
+    for (let i = 0; i < dataSource.length; i++) {
+        let recipe = dataSource[i];
         let hasAllTags = true;
 
         // Parcourir tous les tags choisis par l'utilisateur

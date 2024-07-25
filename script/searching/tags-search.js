@@ -13,28 +13,30 @@ searchBarUstensils.addEventListener('input', function() {
 });
 
 function searchTags(searchInput, tagClass, dropdown) {
-
     if (searchInput.length < 3) {
+        let tags = document.querySelectorAll('.item_name');
+        for (let i = 0; i < tags.length; i++) {
+            if (tags[i].closest('.list_' + dropdown)) {
+                tags[i].style.display = 'flex';
+            }
+        }
         return;
     }
 
     let searchInputLower = searchInput.toLowerCase();
-
     let uniqueTags = new Set();
-
     let tags = document.querySelectorAll('.item_name');
     let found = false;
 
-    tags.forEach(tag => {
+    for (let i = 0; i < tags.length; i++) {
+        let tag = tags[i];
         if (tag.closest('.list_' + dropdown)) {
-            // Obtenez le texte du tag et convertissez-le en minuscules
             let tagTextLower = tag.textContent.toLowerCase();
-
             let words = tagTextLower.split(' ');
 
             let match = false;
-            for(let i = 0; i < words.length; i++) {
-                if(words[i].startsWith(searchInputLower)) {
+            for (let j = 0; j < words.length; j++) {
+                if (words[j].startsWith(searchInputLower)) {
                     match = true;
                     break;
                 }
@@ -57,7 +59,7 @@ function searchTags(searchInput, tagClass, dropdown) {
                 tag.style.display = 'none';
             }
         }
-    });
+    }
 
     if (!found) {
         let errorMessage = document.querySelector('.list_' + dropdown + ' .error-message');
@@ -71,7 +73,6 @@ function searchTags(searchInput, tagClass, dropdown) {
 }
 
 function clearSearch() {
-
     let searchBarIngredients = document.getElementById('ingredients');
     let searchBarAppliances = document.getElementById('appareils');
     let searchBarUstensils = document.getElementById('ustensiles');
@@ -81,13 +82,12 @@ function clearSearch() {
     searchBarUstensils.value = '';
 
     let tags = document.querySelectorAll('.item_name');
-    tags.forEach(tag => {
-        tag.style.display = 'flex';
-    });
+    for (let i = 0; i < tags.length; i++) {
+        tags[i].style.display = 'flex';
+    }
 
-    // Supprimez les messages d'erreur
     let errorMessages = document.querySelectorAll('.error-message');
-    errorMessages.forEach(errorMessage => {
-        errorMessage.remove();
-    });
+    for (let i = 0; i < errorMessages.length; i++) {
+        errorMessages[i].remove();
+    }
 }
