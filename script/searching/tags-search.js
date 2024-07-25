@@ -13,32 +13,21 @@ searchBarUstensils.addEventListener('input', function() {
 });
 
 function searchTags(searchInput, tagClass, dropdown) {
-
     if (searchInput.length < 3) {
         return;
     }
 
     let searchInputLower = searchInput.toLowerCase();
-
     let uniqueTags = new Set();
-
     let tags = document.querySelectorAll('.item_name');
     let found = false;
 
     tags.forEach(tag => {
         if (tag.closest('.list_' + dropdown)) {
-            // Obtenez le texte du tag et convertissez-le en minuscules
             let tagTextLower = tag.textContent.toLowerCase();
-
             let words = tagTextLower.split(' ');
 
-            let match = false;
-            for(let i = 0; i < words.length; i++) {
-                if(words[i].startsWith(searchInputLower)) {
-                    match = true;
-                    break;
-                }
-            }
+            let match = words.some(word => word.startsWith(searchInputLower));
 
             if (match) {
                 if (uniqueTags.has(tagTextLower)) {
@@ -69,7 +58,6 @@ function searchTags(searchInput, tagClass, dropdown) {
         errorMessage.textContent = `Aucun tag ne correspond à ' ${searchInput} '`;
     }
 }
-
 function clearSearch() {
 
     let searchBarIngredients = document.getElementById('ingredients');

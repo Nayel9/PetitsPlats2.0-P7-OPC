@@ -50,4 +50,3 @@ dropdownAppliances.createListItem();
 
 dropdownUstensils.initDropdown();
 dropdownUstensils.createListItem();
-

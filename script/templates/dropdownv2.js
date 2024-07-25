@@ -215,7 +215,6 @@ createSelectedOption(item, name) {
             clearOption.addEventListener('click', function(event) {
                 event.stopPropagation()
                 clearSearch();
-                displayFilteredRecipes(recipes);
                 searchBarOption.value = '';
                 clearOption.style.display = 'none';
             });

@@ -5,8 +5,13 @@ let filteredRecipesByInput = []; // Variable globale pour stocker les recettes f
 
 
 clearButton.addEventListener('click', function() {
-    displayAllRecipes();
+    if (userChosenTags.length !== 0) {
+        displayFilteredRecipes(filteredRecipesByInput);
+    } else {
+        displayAllRecipes();
+    }
 });
+
 searchBarUserInput.addEventListener('input', function() {
     let errorMessage = document.getElementById('error-message');
     if (this.value.length >= 3) {
@@ -29,42 +34,13 @@ searchButton.addEventListener('click', function() {
 
 function searchRecipes() {
     let searchInputWords = searchBarUserInput.value.toLowerCase().split(' ');
-    filteredRecipesByInput = [];
-    for (let i = 0; i < recipes.length; i++) {
-        let recipe = recipes[i];
+    filteredRecipesByInput = recipes.filter(recipe => {
         let recipeTitleWords = recipe.name.toLowerCase().split(' ');
         let recipeDescriptionWords = recipe.description.toLowerCase().split(' ');
-        let titleMatch = false;
-        let descriptionMatch = false;
-
-        // Vérifier chaque mot de l'input dans le titre de la recette
-        for (let inputWord of searchInputWords) {
-            for (let titleWord of recipeTitleWords) {
-                if (titleWord.startsWith(inputWord)) {
-                    titleMatch = true;
-                    break; // Sortir dès qu'une correspondance est trouvée
-                }
-            }
-            if (titleMatch) break; // Sortir si une correspondance est trouvée dans le titre
-        }
-
-        // Vérifier chaque mot de l'input dans la description de la recette
-        if (!titleMatch) { // Continuer seulement si aucune correspondance n'a été trouvée dans le titre
-            for (let inputWord of searchInputWords) {
-                for (let descriptionWord of recipeDescriptionWords) {
-                    if (descriptionWord.startsWith(inputWord)) {
-                        descriptionMatch = true;
-                        break; // Sortir dès qu'une correspondance est trouvée
-                    }
-                }
-                if (descriptionMatch) break; // Sortir si une correspondance est trouvée dans la description
-            }
-        }
-
-        if (titleMatch || descriptionMatch) {
-            filteredRecipesByInput.push(recipe);
-        }
-    }
+        let titleMatch = searchInputWords.some(inputWord => recipeTitleWords.some(titleWord => titleWord.startsWith(inputWord)));
+        let descriptionMatch = !titleMatch && searchInputWords.some(inputWord => recipeDescriptionWords.some(descriptionWord => descriptionWord.startsWith(inputWord)));
+        return titleMatch || descriptionMatch;
+    });
 
     if (userChosenTags.length > 0) {
         filterRecipesByTags(); // Utiliser `filteredRecipesByInput` comme base pour le filtrage par tags
@@ -91,34 +67,29 @@ function searchRecipes() {
 
 function displayFilteredRecipes(filteredRecipes) {
     let allRecipes = document.querySelectorAll('.recipe_card');
-    for (let i = 0; i < allRecipes.length; i++) {
-        allRecipes[i].style.display = 'none';
-    }
+    allRecipes.forEach(recipe => {
+        recipe.style.display = 'none';
+    });
 
-    for (let i = 0; i < filteredRecipes.length; i++) {
-        let recipe = filteredRecipes[i];
+    filteredRecipes.forEach(recipe => {
         let recipeElement = document.getElementById(`${recipe.id}`);
         if (recipeElement) {
             recipeElement.style.display = 'flex';
         }
-    }
-    updateRecipeCount();
-}
-function displayAllRecipes() {
-    let recipes = document.querySelectorAll('.recipe_card');
-    recipes.forEach(recipe => {
-        recipe.style.display = 'flex';
     });
     updateRecipeCount();
 }
 
 function updateRecipeCount() {
     let recipes = Array.from(document.querySelectorAll('.recipe_card'));
-    let count = 0;
-    for(let i = 0; i < recipes.length; i++) {
-        if(recipes[i].style.display !== 'none') {
-            count++;
-        }
-    }
+    let count = recipes.filter(recipe => recipe.style.display !== 'none').length;
     qtyRecipeElement.textContent = `${count} recettes`;
+}
+
+function displayAllRecipes() {
+    let recipes = document.querySelectorAll('.recipe_card');
+    recipes.forEach(recipe => {
+        recipe.style.display = 'flex';
+    });
+    updateRecipeCount();
 }

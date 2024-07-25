@@ -1,53 +1,18 @@
 let userChosenTags = [];
-
+let filteredRecipes = [];
 function filterRecipesByTags() {
-    let filteredRecipes = [];
-    resetDisplayProperty()
+    let sourceRecipes = (!filteredRecipesByInput || filteredRecipesByInput.length === 0) ? recipes : filteredRecipesByInput;
 
-    // Parcourir toutes les recettes
-    for (let i = 0; i < filteredRecipesByInput.length; i++) {
-        let recipe = filteredRecipesByInput[i];
-        let hasAllTags = true;
+    resetDisplayProperty();
+    filteredRecipes = sourceRecipes.filter(recipe => {
+        return userChosenTags.every(tag =>
+            recipe.ingredients.some(ingredient => ingredient.ingredient === tag) ||
+            recipe.appliance === tag ||
+            recipe.ustensils.includes(tag)
+        );
+    });
 
-        // Parcourir tous les tags choisis par l'utilisateur
-        for (let j = 0; j < userChosenTags.length; j++) {
-            let userChosenTag = userChosenTags[j];
-            let tagFound = false;
-
-            // Vérifier si le tag choisi par l'utilisateur est dans les ingrédients, l'appareil ou les ustensiles de la recette
-            for (let k = 0; k < recipe.ingredients.length; k++) {
-                let recipeIngredient = recipe.ingredients[k];
-                if (recipeIngredient.ingredient === userChosenTag) {
-                    tagFound = true;
-                    break;
-                }
-            }
-
-            if (recipe.appliance === userChosenTag) {
-                tagFound = true;
-            }
-
-            for (let k = 0; k < recipe.ustensils.length; k++) {
-                let recipeUstensil = recipe.ustensils[k];
-                if (recipeUstensil === userChosenTag) {
-                    tagFound = true;
-                    break;
-                }
-            }
-
-            if (!tagFound) {
-                hasAllTags = false;
-                break;
-            }
-        }
-
-        if (hasAllTags) {
-            filteredRecipes.push(recipe);
-            recipe.isDisplayed = true;
-        } else {
-            recipe.isDisplayed = false; // Marquer la recette comme cachée
-        }
-    }
+    filteredRecipes.forEach(recipe => recipe.isDisplayed = true);
     displayFilteredRecipes(filteredRecipes);
 
     let errorMessage = document.getElementById('error-message');
@@ -65,11 +30,8 @@ function filterRecipesByTags() {
     }
 
     updateRecipeCount();
-
-
 }
+
 function resetDisplayProperty() {
-    for (let i = 0; i < recipes.length; i++) {
-        recipes[i].isDisplayed = true;
-    }
+    recipes.forEach(recipe => recipe.isDisplayed = true);
 }
