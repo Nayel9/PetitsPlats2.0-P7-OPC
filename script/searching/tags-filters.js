@@ -1,8 +1,21 @@
+/**
+ * Tableau global pour stocker les tags choisis par l'utilisateur.
+ * @type {Array}
+ */
 let userChosenTags = [];
+
+/**
+ * Tableau global pour stocker les recettes filtrées par tags.
+ * @type {Array}
+ */
 let filteredRecipes = [];
+
+/**
+ * Filtre les recettes en fonction des tags choisis par l'utilisateur.
+ */
 function filterRecipesByTags() {
     filteredRecipes = [];
-    resetDisplayProperty()
+    resetDisplayProperty();
 
     let dataSource;
     if (filteredRecipesByInput.length > 0) {
@@ -10,6 +23,7 @@ function filterRecipesByTags() {
     } else {
         dataSource = recipes;
     }
+
     // Parcourir toutes les recettes de la source de données sélectionnée
     for (let i = 0; i < dataSource.length; i++) {
         let recipe = dataSource[i];
@@ -71,9 +85,11 @@ function filterRecipesByTags() {
     }
 
     updateRecipeCount();
-
-
 }
+
+/**
+ * Réinitialise la propriété d'affichage de toutes les recettes.
+ */
 function resetDisplayProperty() {
     for (let i = 0; i < recipes.length; i++) {
         recipes[i].isDisplayed = true;

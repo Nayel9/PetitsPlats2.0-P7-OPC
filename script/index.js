@@ -1,3 +1,14 @@
+/**
+ * Crée une carte de recette HTML à partir d'un objet recette.
+ * @param {Object} recipe - L'objet recette.
+ * @param {number} recipe.id - L'identifiant de la recette.
+ * @param {string} recipe.image - Le nom de l'image de la recette.
+ * @param {number} recipe.time - Le temps de préparation de la recette en minutes.
+ * @param {string} recipe.name - Le nom de la recette.
+ * @param {string} recipe.description - La description de la recette.
+ * @param {Array} recipe.ingredients - La liste des ingrédients de la recette.
+ * @returns {HTMLElement} - La carte de recette HTML.
+ */
 function createRecipeCard(recipe) {
     const recipeCard = document.createElement('div');
     recipeCard.className = 'recipe_card';
@@ -86,6 +97,9 @@ function createRecipeCard(recipe) {
     return recipeCard;
 }
 
+/**
+ * Sélectionne le conteneur de recettes et y ajoute les cartes de recettes.
+ */
 const gridRecipe = document.querySelector('.recipe_container');
 
 recipes.forEach(recipe => {
@@ -94,20 +108,27 @@ recipes.forEach(recipe => {
     gridRecipe.appendChild(recipeCard);
 });
 
+/**
+ * Compte et affiche le nombre de recettes.
+ */
 const qtyRecipe = document.querySelectorAll('.recipe_card').length;
 console.log(qtyRecipe);
 const qtyRecipeElement = document.querySelector('.result_counter');
 qtyRecipeElement.textContent = `${qtyRecipe} recettes`;
 
+/**
+ * Sélectionne la barre de recherche et ajoute un bouton de suppression.
+ */
 const searchBar = document.querySelector('.header_container-search-bar input');
 const clearIcon = document.createElement('span');
 clearIcon.className = 'fa-solid fa-xmark';
 clearIcon.id = 'clear-button';
-
 searchBar.parentNode.appendChild(clearIcon);
-
 clearIcon.style.display = 'none';
 
+/**
+ * Affiche ou masque le bouton de suppression en fonction de l'entrée de la barre de recherche.
+ */
 searchBar.addEventListener('input', function() {
     if (searchBar.value) {
         clearIcon.style.display = 'block';
@@ -116,15 +137,19 @@ searchBar.addEventListener('input', function() {
     }
 });
 
+/**
+ * Efface le contenu de la barre de recherche et masque le bouton de suppression.
+ */
 clearIcon.addEventListener('click', function() {
     searchBar.value = '';
-
     clearIcon.style.display = 'none';
 });
 
+/**
+ * Réinitialise les valeurs des champs de saisie lors du chargement du document.
+ */
 document.addEventListener('DOMContentLoaded', function() {
     const inputElements = document.querySelectorAll('input');
-
     inputElements.forEach(input => {
         input.value = '';
     });

@@ -1,5 +1,19 @@
+/**
+ * Élément de la barre de recherche des ingrédients.
+ * @type {HTMLElement}
+ */
 let searchBarIngredients = document.getElementById('ingredients');
+
+/**
+ * Élément de la barre de recherche des appareils.
+ * @type {HTMLElement}
+ */
 let searchBarAppliances = document.getElementById('appareils');
+
+/**
+ * Élément de la barre de recherche des ustensiles.
+ * @type {HTMLElement}
+ */
 let searchBarUstensils = document.getElementById('ustensiles');
 
 searchBarIngredients.addEventListener('input', function() {
@@ -12,6 +26,12 @@ searchBarUstensils.addEventListener('input', function() {
     searchTags(this.value, '.list_ustensiles', 'ustensiles');
 });
 
+/**
+ * Recherche les tags en fonction de l'input de l'utilisateur.
+ * @param {string} searchInput - La valeur de l'input de recherche.
+ * @param {string} tagClass - La classe CSS de la liste des tags.
+ * @param {string} dropdown - Le type de dropdown (ingrédients, appareils, ustensiles).
+ */
 function searchTags(searchInput, tagClass, dropdown) {
     if (searchInput.length < 3) {
         let tags = document.querySelectorAll('.item_name');
@@ -72,6 +92,9 @@ function searchTags(searchInput, tagClass, dropdown) {
     }
 }
 
+/**
+ * Réinitialise les barres de recherche et affiche tous les tags.
+ */
 function clearSearch() {
     let searchBarIngredients = document.getElementById('ingredients');
     let searchBarAppliances = document.getElementById('appareils');

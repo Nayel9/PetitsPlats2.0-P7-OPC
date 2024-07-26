@@ -75,9 +75,10 @@ a{
       position: relative;
       span{
         position: absolute;
-        right: 75px;
+        right: 80px;
+        top: 26px;
         color: lightgray;
-        font-size: 20px;
+        font-size: 22px;
         cursor: pointer;
 
       }
@@ -114,6 +115,9 @@ a{
     color: #FFD15B;
     text-align: center;
   }
+  .search_bar {
+    width: 100%;
+  }
 }
 
 @media (max-width: 768px){
@@ -141,6 +145,7 @@ a{
       width: 85%;
       span{
         font-size: 40px;
+        top: 16px;
 
       }
     }
