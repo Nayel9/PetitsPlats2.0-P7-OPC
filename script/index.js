@@ -1,3 +1,14 @@
+/**
+ * Crée une carte de recette.
+ * @param {Object} recipe - L'objet recette contenant les informations de la recette.
+ * @param {string} recipe.id - L'identifiant de la recette.
+ * @param {string} recipe.image - Le chemin de l'image de la recette.
+ * @param {number} recipe.time - Le temps de préparation de la recette.
+ * @param {string} recipe.name - Le nom de la recette.
+ * @param {string} recipe.description - La description de la recette.
+ * @param {Array} recipe.ingredients - La liste des ingrédients de la recette.
+ * @returns {HTMLElement} - L'élément HTML de la carte de recette.
+ */
 function createRecipeCard(recipe) {
     const recipeCard = document.createElement('div');
     recipeCard.className = 'recipe_card';
@@ -86,6 +97,10 @@ function createRecipeCard(recipe) {
     return recipeCard;
 }
 
+
+/**
+ * Initialise les cartes de recettes et les ajoute au conteneur de recettes.
+ */
 const gridRecipe = document.querySelector('.recipe_container');
 
 recipes.forEach(recipe => {

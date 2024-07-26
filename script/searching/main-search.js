@@ -1,37 +1,53 @@
+/**
+ * Élément de la barre de recherche utilisateur.
+ * @type {HTMLElement}
+ */
 let searchBarUserInput = document.getElementById('search_bar');
+
+/**
+ * Bouton de recherche.
+ * @type {HTMLElement}
+ */
 const searchButton = document.getElementById('search-button');
+
+/**
+ * Bouton pour effacer la recherche.
+ * @type {HTMLElement}
+ */
 const clearButton = document.getElementById('clear-button');
-let filteredRecipesByInput = []; // Variable globale pour stocker les recettes filtrées par l'input
 
+/**
+ * Tableau global pour stocker les recettes filtrées par l'input.
+ * @type {Array}
+ */
+let filteredRecipesByInput = [];
 
-clearButton.addEventListener('click', function() {
-    if (userChosenTags.length !== 0) {
-        displayFilteredRecipes(filteredRecipesByInput);
-    } else {
-        displayAllRecipes();
-    }
+/**
+ * Ajoute un événement de clic pour effacer la recherche.
+ */
+clearButton.addEventListener('click', () => {
+    userChosenTags.length !== 0 ? displayFilteredRecipes(filteredRecipesByInput) : displayAllRecipes();
 });
 
+/**
+ * Ajoute un événement d'entrée pour rechercher des recettes.
+ */
 searchBarUserInput.addEventListener('input', function() {
     let errorMessage = document.getElementById('error-message');
-    if (this.value.length >= 3) {
-        searchRecipes();
-    } else {
-        displayAllRecipes(filteredRecipesByInput);
-        if (errorMessage) {
-            errorMessage.remove();
-        }
-    }
+    this.value.length >= 3 ? searchRecipes() : displayAllRecipes(filteredRecipesByInput);
+    if (errorMessage) errorMessage.remove();
 });
 
-searchButton.addEventListener('click', function() {
-    if (searchBarUserInput.value.length >= 3) {
-        searchRecipes();
-    } else {
-        displayAllRecipes();
-    }
+/**
+ * Ajoute un événement de clic pour rechercher des recettes.
+ */
+searchButton.addEventListener('click', () => {
+    searchBarUserInput.value.length >= 3 ? searchRecipes() : displayAllRecipes();
 });
 
+/**
+ * Recherche des recettes en fonction de l'entrée de l'utilisateur.
+ */
 function searchRecipes() {
     let searchInputWords = searchBarUserInput.value.toLowerCase().split(' ');
     filteredRecipesByInput = recipes.filter(recipe => {
@@ -42,11 +58,7 @@ function searchRecipes() {
         return titleMatch || descriptionMatch;
     });
 
-    if (userChosenTags.length > 0) {
-        filterRecipesByTags(); // Utiliser `filteredRecipesByInput` comme base pour le filtrage par tags
-    } else {
-        displayFilteredRecipes(filteredRecipesByInput);
-    }
+    userChosenTags.length > 0 ? filterRecipesByTags() : displayFilteredRecipes(filteredRecipesByInput);
 
     let errorMessage = document.getElementById('error-message');
     const recipeContainer = document.querySelector('.recipe_container');
@@ -65,31 +77,31 @@ function searchRecipes() {
     updateRecipeCount();
 }
 
+/**
+ * Affiche les recettes filtrées.
+ * @param {Array} filteredRecipes - Le tableau des recettes filtrées.
+ */
 function displayFilteredRecipes(filteredRecipes) {
-    let allRecipes = document.querySelectorAll('.recipe_card');
-    allRecipes.forEach(recipe => {
-        recipe.style.display = 'none';
-    });
-
+    document.querySelectorAll('.recipe_card').forEach(recipe => recipe.style.display = 'none');
     filteredRecipes.forEach(recipe => {
         let recipeElement = document.getElementById(`${recipe.id}`);
-        if (recipeElement) {
-            recipeElement.style.display = 'flex';
-        }
+        if (recipeElement) recipeElement.style.display = 'flex';
     });
     updateRecipeCount();
 }
 
+/**
+ * Met à jour le compteur de recettes affichées.
+ */
 function updateRecipeCount() {
-    let recipes = Array.from(document.querySelectorAll('.recipe_card'));
-    let count = recipes.filter(recipe => recipe.style.display !== 'none').length;
+    let count = Array.from(document.querySelectorAll('.recipe_card')).filter(recipe => recipe.style.display !== 'none').length;
     qtyRecipeElement.textContent = `${count} recettes`;
 }
 
+/**
+ * Affiche toutes les recettes.
+ */
 function displayAllRecipes() {
-    let recipes = document.querySelectorAll('.recipe_card');
-    recipes.forEach(recipe => {
-        recipe.style.display = 'flex';
-    });
+    document.querySelectorAll('.recipe_card').forEach(recipe => recipe.style.display = 'flex');
     updateRecipeCount();
 }

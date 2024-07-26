@@ -1,5 +1,19 @@
+/**
+ * Élément de la barre de recherche des ingrédients.
+ * @type {HTMLElement}
+ */
 let searchBarIngredients = document.getElementById('ingredients');
+
+/**
+ * Élément de la barre de recherche des appareils.
+ * @type {HTMLElement}
+ */
 let searchBarAppliances = document.getElementById('appareils');
+
+/**
+ * Élément de la barre de recherche des ustensiles.
+ * @type {HTMLElement}
+ */
 let searchBarUstensils = document.getElementById('ustensiles');
 
 searchBarIngredients.addEventListener('input', function() {
@@ -12,6 +26,12 @@ searchBarUstensils.addEventListener('input', function() {
     searchTags(this.value, '.list_ustensiles', 'ustensiles');
 });
 
+/**
+ * Recherche des tags en fonction de l'entrée de l'utilisateur.
+ * @param {string} searchInput - L'entrée de recherche de l'utilisateur.
+ * @param {string} tagClass - La classe CSS des tags à rechercher.
+ * @param {string} dropdown - Le type de dropdown (ingredients, appareils, ustensiles).
+ */
 function searchTags(searchInput, tagClass, dropdown) {
     let searchInputLower = searchInput.toLowerCase();
     let uniqueTags = new Set();
@@ -68,8 +88,11 @@ function searchTags(searchInput, tagClass, dropdown) {
         errorMessage.textContent = `Aucun tag ne correspond à ' ${searchInput} '`;
     }
 }
-function clearSearch() {
 
+/**
+ * Efface la recherche et réinitialise l'affichage des tags.
+ */
+function clearSearch() {
     let searchBarIngredients = document.getElementById('ingredients');
     let searchBarAppliances = document.getElementById('appareils');
     let searchBarUstensils = document.getElementById('ustensiles');
@@ -83,7 +106,7 @@ function clearSearch() {
         tag.style.display = 'flex';
     });
 
-    // Supprimez les messages d'erreur
+    // Supprime les messages d'erreur
     let errorMessages = document.querySelectorAll('.error-message');
     errorMessages.forEach(errorMessage => {
         errorMessage.remove();

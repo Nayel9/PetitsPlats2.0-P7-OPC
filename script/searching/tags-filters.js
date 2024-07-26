@@ -1,5 +1,18 @@
+/**
+ * Tableau des tags choisis par l'utilisateur.
+ * @type {Array<string>}
+ */
 let userChosenTags = [];
+
+/**
+ * Tableau des recettes filtrées.
+ * @type {Array<Object>}
+ */
 let filteredRecipes = [];
+
+/**
+ * Filtre les recettes en fonction des tags choisis par l'utilisateur.
+ */
 function filterRecipesByTags() {
     let sourceRecipes = (!filteredRecipesByInput || filteredRecipesByInput.length === 0) ? recipes : filteredRecipesByInput;
 
@@ -32,6 +45,9 @@ function filterRecipesByTags() {
     updateRecipeCount();
 }
 
+/**
+ * Réinitialise la propriété d'affichage de toutes les recettes.
+ */
 function resetDisplayProperty() {
     recipes.forEach(recipe => recipe.isDisplayed = true);
 }
