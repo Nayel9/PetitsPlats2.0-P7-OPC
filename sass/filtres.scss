@@ -175,21 +175,6 @@
   color: crimson;
 }
 
-//.list_ingredients, .list_appareils, .list_ustensiles{
-//  display: none;
-//  flex-direction: column;
-//  gap: 15px;
-//  width: 220px;
-//  //padding: 10px 20px 10px 20px;
-//  background-color: #FFFFFF;
-//  position: absolute;
-//  top: 45px;
-//  border-radius: 0 0 10px 10px;
-//  z-index: 1000;
-//  height: 320px;
-//}
-
-
 .sort_options{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -244,7 +229,6 @@
             top: 73px;
             padding:0;
             height: 800px;
-            //border-radius: 15px;
             label{
 
               input{
