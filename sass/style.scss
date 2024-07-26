@@ -2,18 +2,18 @@
 @import "filtres.scss";
 
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Manrope", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Manrope", sans-serif;
 }
 :focus{
-    outline: none;
+  outline: none;
 }
 
 input[type="text"]{
-    border: none;
-    outline: none;
+  border: none;
+  outline: none;
 }
 body{
   width: 1440px;
@@ -35,8 +35,8 @@ h1,h2, h3, h4, h5, h6{
 }
 
 a{
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
 
 //header
@@ -75,9 +75,10 @@ a{
       position: relative;
       span{
         position: absolute;
-        right: 75px;
+        right: 80px;
+        top: 26px;
         color: lightgray;
-        font-size: 20px;
+        font-size: 22px;
         cursor: pointer;
 
       }
@@ -114,6 +115,9 @@ a{
     color: #FFD15B;
     text-align: center;
   }
+  .search_bar {
+    width: 100%;
+  }
 }
 
 @media (max-width: 768px){
@@ -141,6 +145,7 @@ a{
       width: 85%;
       span{
         font-size: 40px;
+        top: 16px;
 
       }
     }
