@@ -27,13 +27,31 @@ searchBarUstensils.addEventListener('input', function() {
 });
 
 /**
+ * Échappe les caractères spéciaux HTML dans une chaîne de caractères.
+ * @param {string} str - La chaîne de caractères à échapper.
+ * @returns {string} - La chaîne de caractères échappée.
+ */
+function escapeHTML(str) {
+    return str.replace(/[&<>"']/g, function(match) {
+        const escapeMap = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;'
+        };
+        return escapeMap[match];
+    });
+}
+
+/**
  * Recherche des tags en fonction de l'entrée de l'utilisateur.
  * @param {string} searchInput - L'entrée de recherche de l'utilisateur.
  * @param {string} tagClass - La classe CSS des tags à rechercher.
- * @param {string} dropdown - Le type de dropdown (ingredients, appareils, ustensiles).
+ * @param {string} dropdown - Le type de dropdown (ingrédients, appareils, ustensiles).
  */
 function searchTags(searchInput, tagClass, dropdown) {
-    let searchInputLower = searchInput.toLowerCase();
+    let searchInputLower = escapeHTML(searchInput.toLowerCase());
     let uniqueTags = new Set();
     let tags = document.querySelectorAll('.item_name');
     let found = false;
@@ -85,7 +103,7 @@ function searchTags(searchInput, tagClass, dropdown) {
             errorMessage.className = 'error-message';
             document.querySelector('.list_' + dropdown).appendChild(errorMessage);
         }
-        errorMessage.textContent = `Aucun tag ne correspond à ' ${searchInput} '`;
+        errorMessage.textContent = `Aucun tag ne correspond à '${escapeHTML(searchInput)}'`;
     }
 }
 

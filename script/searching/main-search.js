@@ -1,4 +1,22 @@
 /**
+ * Échappe les caractères spéciaux HTML dans une chaîne de caractères.
+ * @param {string} str - La chaîne de caractères à échapper.
+ * @returns {string} - La chaîne de caractères échappée.
+ */
+function escapeHTML(str) {
+    return str.replace(/[&<>"']/g, function(match) {
+        const escapeMap = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;'
+        };
+        return escapeMap[match];
+    });
+}
+
+/**
  * Élément de la barre de recherche utilisateur.
  * @type {HTMLElement}
  */
@@ -49,7 +67,7 @@ searchButton.addEventListener('click', () => {
  * Recherche des recettes en fonction de l'entrée de l'utilisateur.
  */
 function searchRecipes() {
-    let searchInputWords = searchBarUserInput.value.toLowerCase().split(' ');
+    let searchInputWords = escapeHTML(searchBarUserInput.value.toLowerCase()).split(' ');
     filteredRecipesByInput = recipes.filter(recipe => {
         let recipeTitleWords = recipe.name.toLowerCase().split(' ');
         let recipeDescriptionWords = recipe.description.toLowerCase().split(' ');
@@ -66,7 +84,7 @@ function searchRecipes() {
         if (!errorMessage) {
             errorMessage = document.createElement('p');
             errorMessage.id = 'error-message';
-            errorMessage.textContent = `Aucune recette ne contient ' ${searchBarUserInput.value} '. Vous pouvez rechercher ' tarte aux pommes ', ' poisson ', etc.`;
+            errorMessage.textContent = `Aucune recette ne contient ' ${escapeHTML(searchBarUserInput.value)} '. Vous pouvez rechercher ' tarte aux pommes ', ' poisson ', etc.`;
             recipeContainer.appendChild(errorMessage);
         }
     } else if (errorMessage) {
