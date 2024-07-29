@@ -24,17 +24,14 @@ function filterRecipesByTags() {
         dataSource = recipes;
     }
 
-    // Parcourir toutes les recettes de la source de données sélectionnée
     for (let i = 0; i < dataSource.length; i++) {
         let recipe = dataSource[i];
         let hasAllTags = true;
 
-        // Parcourir tous les tags choisis par l'utilisateur
         for (let j = 0; j < userChosenTags.length; j++) {
             let userChosenTag = userChosenTags[j];
             let tagFound = false;
-
-            // Vérifier si le tag choisi par l'utilisateur est dans les ingrédients, l'appareil ou les ustensiles de la recette
+            
             for (let k = 0; k < recipe.ingredients.length; k++) {
                 let recipeIngredient = recipe.ingredients[k];
                 if (recipeIngredient.ingredient === userChosenTag) {

@@ -6,15 +6,16 @@ const uniqueIngredients = new Set();
 const uniqueAppliances = new Set();
 const uniqueUstensils = new Set();
 
-recipes.forEach(recipe => {
-    recipe.ingredients.forEach(ingredient => {
-        uniqueIngredients.add(ingredient.ingredient);
-    });
+for (let i = 0; i < recipes.length; i++) {
+    let recipe = recipes[i];
+    for (let j = 0; j < recipe.ingredients.length; j++) {
+        uniqueIngredients.add(recipe.ingredients[j].ingredient);
+    }
     uniqueAppliances.add(recipe.appliance);
-    recipe.ustensils.forEach(ustensile => {
-        uniqueUstensils.add(ustensile);
-    });
-});
+    for (let k = 0; k < recipe.ustensils.length; k++) {
+        uniqueUstensils.add(recipe.ustensils[k]);
+    }
+}
 
 /**
  * Initialise les menus déroulants pour les ingrédients, appareils et ustensiles.
