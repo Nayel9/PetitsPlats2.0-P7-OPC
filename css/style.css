@@ -492,15 +492,16 @@ input[type=text] {
 }
 
 body {
-  width: 1440px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
+  overflow-x: hidden;
 }
 
 main {
-  width: 100%;
+  width: 1440px;
   background-color: #EDEDED;
 }
 
@@ -593,30 +594,77 @@ a {
 }
 
 @media (max-width: 768px) {
-  .header_container-search-bar input {
-    font-size: 36px;
+  main {
+    width: 768px;
   }
-}
-@media (max-width: 426px) {
-  .header_container-logo {
-    margin: 30px 0 100px 30px;
+  main .header_container-logo {
+    margin: 10px 0 60px 10px;
   }
-  .header_container-logo a, .header_container-logo span {
-    font-size: 48px;
+  main .header_container-logo a, main .header_container-logo span {
+    font-size: 34px;
   }
-  .header_container-search {
+  main .header_container-search {
     margin-bottom: 100px;
   }
-  .header_container-search h1 {
-    font-size: 72px;
+  main .header_container-search h1 {
+    font-size: 34px;
   }
-  .header_container-search .header_container-search-bar {
+  main .header_container-search .header_container-search-bar {
     margin: 0;
     width: 85%;
   }
-  .header_container-search .header_container-search-bar span {
+  main .header_container-search .header_container-search-bar span {
     font-size: 40px;
     top: 16px;
+  }
+  main .header_container-search .header_container-search-bar input {
+    font-size: 20px;
+    width: 100%;
+  }
+}
+@media (max-width: 426px) {
+  body {
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+  body main {
+    width: 426px;
+  }
+  body main .header_container {
+    padding: 15px;
+  }
+  body main .header_container-logo {
+    margin: 30px 0 30px 15px;
+  }
+  body main .header_container-logo a, body main .header_container-logo span {
+    font-size: 22px;
+  }
+  body main .header_container-search {
+    margin-bottom: 50px;
+  }
+  body main .header_container-search h1 {
+    font-size: 24px;
+  }
+  body main .header_container-search-bar {
+    margin: 0;
+    height: 46px;
+    width: 85%;
+    font-size: 18px;
+  }
+  body main .header_container-search-bar input {
+    font-size: 14px !important;
+    padding-left: 15px;
+  }
+  body main .header_container-search-bar span {
+    font-size: 26px !important;
+    top: 10px !important;
+    right: 50px;
+  }
+  body main .header_container-search-bar button {
+    font-size: 18px;
+    height: 40px;
+    width: 40px;
+    margin-right: 4px;
   }
 }
 
