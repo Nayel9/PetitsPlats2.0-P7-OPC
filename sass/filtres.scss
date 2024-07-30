@@ -5,6 +5,7 @@
   flex-direction: column;
   gap: 20px;
   margin: 30px 0 60px 0;
+  padding: 0 7%;
 }
 
 .recipe_filters{
@@ -12,7 +13,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0 7%;
+
 
   .filters_categories{
     display: flex;
@@ -178,7 +179,6 @@
 .sort_options{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  padding: 0 7%;
   row-gap: 15px;
   column-gap: 30px;
   .selected_option {
@@ -196,61 +196,127 @@
   }
 }
 
+@media (max-width: 768px) {
+  .filters_section{
+    margin: 30px 0 30px 0;
+    padding: 0 5%;
+  }
+
+  .recipe_filters{
+    .filters_categories{
+      gap: 20px;
+      .dropdown{
+        width: 180px;
+      }
+
+      .option{
+        font-size: 18px;
+        padding: 1px 10px 10px 10px;
+        position: sticky;
+        span{
+          position: absolute;
+          right: 45px;
+          top: 12px;
+          font-size: 18px;
+        }
+        .fa-search{
+          right: 20px;
+          top:12px;
+        }
+        label{
+          input{
+            font-size: 22px;
+          }
+        }
+      }
+    }
+  }
+  .list {
+    width: 180px;
+    height: 300px;
+    .item_name{
+      padding: 15px 10px;
+      font-size: 18px;
+    }
+    .item_name_selected {
+      padding: 15px 10px;
+      .circle_close_icon {
+        right: 10px;
+        top: 18px;
+      }
+    }
+  }
+}
+
+.sort_options{
+  grid-template-columns: minmax(180px, max-content) repeat(auto-fill, 180px) 10%;
+  .selected_option {
+    width: 180px;
+  }
+}
+
+
 @media (max-width: 426px){
   .filters_section{
-    margin: 50px 0;
+    margin: 10px 0;
+    padding: 0 3%;
     .recipe_filters{
-      padding: 0 4%;
+      flex-direction: column-reverse;
+      gap: 20px;
       .filters_categories{
+        gap: 10px;
         .filtre{
-          width: 320px;
+          width: 130px;
           .option {
+            padding-bottom: 5px;
             span{
-              font-size: 30px;
-              right: 75px;
-              top: 10px;
+              font-size: 18px;
+              right: 36px;
+              top: 8px;
 
             }
             .fa-search {
-              right: 35px;
-              top: 15px;
-              font-size: 26px;
+              right: 15px;
+              top: 8px;
+              font-size: 16px;
             }
           }
           .dropdown{
-            font-size: 38px;
+            font-size: 16px;
             width: auto;
             height: auto;
-            padding: 20px 38px;
-            gap: 15px;
+            padding: 15px;
+            gap: 10px;
           }
           .list {
             width: 100%;
-            top: 73px;
+            top: 38px;
             padding:0;
             height: 800px;
             label{
 
               input{
-                height: 50px;
-                width: 100%;
-                font-size: 32px;
+                height: 28px;
+                width: 65%;
+                font-size: 16px;
               }
             }
 
             .item_name{
-              font-size: 28px;
+              font-size: 16px;
 
             }
             .item_name_selected{
-              font-size: 28px;
+              font-size: 16px;
               align-items: center;
               .circle_close_icon{
-                height: 28px;
-                width: 28px;
+                height: 18px;
+                width: 18px;
+                top: 16px;
+                right: 5px;
                 i{
                   color: #FFD15B;
-                  font-size: 16px;
+                  font-size: 12px;
                 }
               }
             }
@@ -258,20 +324,18 @@
         }
       }
       .result_counter{
-        font-size: 42px;
+        font-size: 25px;
       }
     }
-    .sort_options {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      padding: 0 4%;
-      row-gap: 25px;
-      column-gap: 30px;
-      .selected_option{
-        width: 320px;
-        height: auto;
-        font-size: 38px;
-        padding: 10px 20px;
+    .sort_options{
+      grid-template-columns: minmax(130px, max-content) repeat(auto-fill, 130px) 10%;
+      row-gap: 5px;
+      column-gap: 5px;
+      .selected_option {
+        width: 130px;
+        height: 38px;
+        font-size: 12px;
+        padding: 10px 10px;
       }
     }
   }

@@ -16,15 +16,16 @@ input[type="text"]{
   outline: none;
 }
 body{
-  width: 1440px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
+  overflow-x: hidden;
 }
 
 main{
-  width: 100%;
+  width: 1440px;
   background-color: #EDEDED;
 
 }
@@ -121,32 +122,86 @@ a{
 }
 
 @media (max-width: 768px){
-  .header_container-search-bar input{
-    font-size: 36px;
+  main {
+    width: 768px;
+
+    .header_container-logo {
+      margin: 10px 0 60px 10px;
+      a, span {
+        font-size: 34px;
+      }
+    }
+
+    .header_container-search {
+      margin-bottom: 100px;
+
+      h1 {
+        font-size: 34px;
+      }
+
+      .header_container-search-bar {
+        margin: 0;
+        width: 85%;
+        span{
+          font-size: 40px;
+          top: 16px;
+
+        }
+        input{
+          font-size: 20px;
+          width: 100%;
+        }
+      }
+    }
   }
 }
 
 @media (max-width: 426px){
-  .header_container-logo {
-    margin: 30px 0 100px 30px;
-    a, span {
-      font-size: 48px;
-    }
-  }
-  .header_container-search {
-    margin-bottom: 100px;
+  body {
+    overflow-x: hidden;
+    box-sizing: border-box;
+    main {
+        width: 426px;
+      .header_container{
+        padding: 15px;
+        &-logo {
+          margin: 30px 0 30px 15px;
 
-    h1 {
-      font-size: 72px;
-    }
+          a, span {
+            font-size: 22px;
+          }
+        }
 
-    .header_container-search-bar {
-      margin: 0;
-      width: 85%;
-      span{
-        font-size: 40px;
-        top: 16px;
+        &-search {
+          margin-bottom: 50px;
 
+          h1 {
+            font-size: 24px;
+          }
+
+          &-bar {
+            margin: 0;
+            height: 46px;
+            width: 85%;
+            font-size: 18px;
+            input{
+              font-size: 14px!important;
+              padding-left: 15px;
+            }
+            span {
+              font-size: 26px!important;
+              top: 10px!important;
+              right: 50px;
+
+            }
+            button {
+              font-size: 18px;
+              height: 40px;
+              width: 40px;
+              margin-right: 4px;
+            }
+          }
+        }
       }
     }
   }

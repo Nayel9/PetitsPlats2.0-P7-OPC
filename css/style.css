@@ -89,37 +89,37 @@
 }
 
 @media (max-width: 768px) {
-  .header_container-search-bar input {
-    font-size: 16px;
-  }
   .recipe_container {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 49%);
+    padding: 0 5%;
+    column-gap: 15px;
+    row-gap: 30px;
   }
   .recipe_container .recipe_card {
     width: 100%;
   }
   .recipe_container .recipe_card .recipe_card_img {
-    width: 111.2%;
+    width: 121.5%;
   }
   .recipe_container .recipe_card_time {
-    left: 500px;
+    left: 260px;
   }
   .recipe_container .recipe_card_content {
     gap: 40px;
     line-height: 1.4;
   }
   .recipe_container .recipe_card_content h3 {
-    font-size: 18px;
+    font-size: 16px;
   }
   .recipe_container .recipe_card_content .recipe_card_title {
-    font-size: 20px;
+    font-size: 16px;
     line-height: 1.2;
   }
   .recipe_container .recipe_card_content .recipe_card_description p {
-    font-size: 18px;
+    font-size: 14px;
   }
   .recipe_container .recipe_card_content .recipe_card_ingredients {
-    font-size: 18px;
+    font-size: 14px;
   }
 }
 @media (max-width: 426px) {
@@ -134,32 +134,30 @@
     width: 100%;
   }
   .recipe_container .recipe_card .recipe_card_img {
-    width: 105.1%;
-    height: 800px;
+    width: 117.8%;
+    height: 300px;
   }
   .recipe_container .recipe_card_time {
-    left: 1150px;
-    font-size: 32px;
-    padding: 25px;
-    border-radius: 30px;
+    left: 310px;
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 18px;
   }
   .recipe_container .recipe_card_content {
-    gap: 60px;
-    line-height: 1.6;
-    padding: 80px 160px;
+    gap: 20px;
+    padding: 15px 5px;
   }
   .recipe_container .recipe_card_content h3 {
-    font-size: 42px;
+    font-size: 20px;
   }
   .recipe_container .recipe_card_content .recipe_card_title {
-    font-size: 48px;
-    line-height: 1.2;
+    font-size: 24px;
   }
   .recipe_container .recipe_card_content .recipe_card_description p {
-    font-size: 38px;
+    font-size: 18px;
   }
   .recipe_container .recipe_card_content .recipe_card_ingredients {
-    font-size: 38px;
+    font-size: 18px;
   }
 }
 .filters_section {
@@ -167,6 +165,7 @@
   flex-direction: column;
   gap: 20px;
   margin: 30px 0 60px 0;
+  padding: 0 7%;
 }
 
 .recipe_filters {
@@ -174,7 +173,6 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0 7%;
 }
 .recipe_filters .filters_categories {
   display: flex;
@@ -328,7 +326,6 @@
 .sort_options {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  padding: 0 7%;
   row-gap: 15px;
   column-gap: 30px;
 }
@@ -346,74 +343,134 @@
   text-transform: capitalize;
 }
 
+@media (max-width: 768px) {
+  .filters_section {
+    margin: 30px 0 30px 0;
+    padding: 0 5%;
+  }
+  .recipe_filters .filters_categories {
+    gap: 20px;
+  }
+  .recipe_filters .filters_categories .dropdown {
+    width: 180px;
+  }
+  .recipe_filters .filters_categories .option {
+    font-size: 18px;
+    padding: 1px 10px 10px 10px;
+    position: sticky;
+  }
+  .recipe_filters .filters_categories .option span {
+    position: absolute;
+    right: 45px;
+    top: 12px;
+    font-size: 18px;
+  }
+  .recipe_filters .filters_categories .option .fa-search {
+    right: 20px;
+    top: 12px;
+  }
+  .recipe_filters .filters_categories .option label input {
+    font-size: 22px;
+  }
+  .list {
+    width: 180px;
+    height: 300px;
+  }
+  .list .item_name {
+    padding: 15px 10px;
+    font-size: 18px;
+  }
+  .list .item_name_selected {
+    padding: 15px 10px;
+  }
+  .list .item_name_selected .circle_close_icon {
+    right: 10px;
+    top: 18px;
+  }
+}
+.sort_options {
+  grid-template-columns: minmax(180px, max-content) repeat(auto-fill, 180px) 10%;
+}
+.sort_options .selected_option {
+  width: 180px;
+}
+
 @media (max-width: 426px) {
   .filters_section {
-    margin: 50px 0;
+    margin: 10px 0;
+    padding: 0 3%;
   }
   .filters_section .recipe_filters {
-    padding: 0 4%;
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+  .filters_section .recipe_filters .filters_categories {
+    gap: 10px;
   }
   .filters_section .recipe_filters .filters_categories .filtre {
-    width: 320px;
+    width: 130px;
+  }
+  .filters_section .recipe_filters .filters_categories .filtre .option {
+    padding-bottom: 5px;
   }
   .filters_section .recipe_filters .filters_categories .filtre .option span {
-    font-size: 30px;
-    right: 75px;
-    top: 10px;
+    font-size: 18px;
+    right: 36px;
+    top: 8px;
   }
   .filters_section .recipe_filters .filters_categories .filtre .option .fa-search {
-    right: 35px;
-    top: 15px;
-    font-size: 26px;
+    right: 15px;
+    top: 8px;
+    font-size: 16px;
   }
   .filters_section .recipe_filters .filters_categories .filtre .dropdown {
-    font-size: 38px;
+    font-size: 16px;
     width: auto;
     height: auto;
-    padding: 20px 38px;
-    gap: 15px;
+    padding: 15px;
+    gap: 10px;
   }
   .filters_section .recipe_filters .filters_categories .filtre .list {
     width: 100%;
-    top: 73px;
+    top: 38px;
     padding: 0;
     height: 800px;
   }
   .filters_section .recipe_filters .filters_categories .filtre .list label input {
-    height: 50px;
-    width: 100%;
-    font-size: 32px;
+    height: 28px;
+    width: 65%;
+    font-size: 16px;
   }
   .filters_section .recipe_filters .filters_categories .filtre .list .item_name {
-    font-size: 28px;
+    font-size: 16px;
   }
   .filters_section .recipe_filters .filters_categories .filtre .list .item_name_selected {
-    font-size: 28px;
+    font-size: 16px;
     align-items: center;
   }
   .filters_section .recipe_filters .filters_categories .filtre .list .item_name_selected .circle_close_icon {
-    height: 28px;
-    width: 28px;
+    height: 18px;
+    width: 18px;
+    top: 16px;
+    right: 5px;
   }
   .filters_section .recipe_filters .filters_categories .filtre .list .item_name_selected .circle_close_icon i {
     color: #FFD15B;
-    font-size: 16px;
+    font-size: 12px;
   }
   .filters_section .recipe_filters .result_counter {
-    font-size: 42px;
+    font-size: 25px;
   }
   .filters_section .sort_options {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    padding: 0 4%;
-    row-gap: 25px;
-    column-gap: 30px;
+    grid-template-columns: minmax(130px, max-content) repeat(auto-fill, 130px) 10%;
+    row-gap: 5px;
+    column-gap: 5px;
   }
   .filters_section .sort_options .selected_option {
-    width: 320px;
-    height: auto;
-    font-size: 38px;
-    padding: 10px 20px;
+    width: 130px;
+    height: 38px;
+    font-size: 12px;
+    padding: 10px 10px;
   }
 }
 * {
@@ -433,15 +490,16 @@ input[type=text] {
 }
 
 body {
-  width: 1440px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
+  overflow-x: hidden;
 }
 
 main {
-  width: 100%;
+  width: 1440px;
   background-color: #EDEDED;
 }
 
@@ -534,30 +592,77 @@ a {
 }
 
 @media (max-width: 768px) {
-  .header_container-search-bar input {
-    font-size: 36px;
+  main {
+    width: 768px;
   }
-}
-@media (max-width: 426px) {
-  .header_container-logo {
-    margin: 30px 0 100px 30px;
+  main .header_container-logo {
+    margin: 10px 0 60px 10px;
   }
-  .header_container-logo a, .header_container-logo span {
-    font-size: 48px;
+  main .header_container-logo a, main .header_container-logo span {
+    font-size: 34px;
   }
-  .header_container-search {
+  main .header_container-search {
     margin-bottom: 100px;
   }
-  .header_container-search h1 {
-    font-size: 72px;
+  main .header_container-search h1 {
+    font-size: 34px;
   }
-  .header_container-search .header_container-search-bar {
+  main .header_container-search .header_container-search-bar {
     margin: 0;
     width: 85%;
   }
-  .header_container-search .header_container-search-bar span {
+  main .header_container-search .header_container-search-bar span {
     font-size: 40px;
     top: 16px;
+  }
+  main .header_container-search .header_container-search-bar input {
+    font-size: 20px;
+    width: 100%;
+  }
+}
+@media (max-width: 426px) {
+  body {
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+  body main {
+    width: 426px;
+  }
+  body main .header_container {
+    padding: 15px;
+  }
+  body main .header_container-logo {
+    margin: 30px 0 30px 15px;
+  }
+  body main .header_container-logo a, body main .header_container-logo span {
+    font-size: 22px;
+  }
+  body main .header_container-search {
+    margin-bottom: 50px;
+  }
+  body main .header_container-search h1 {
+    font-size: 24px;
+  }
+  body main .header_container-search-bar {
+    margin: 0;
+    height: 46px;
+    width: 85%;
+    font-size: 18px;
+  }
+  body main .header_container-search-bar input {
+    font-size: 14px !important;
+    padding-left: 15px;
+  }
+  body main .header_container-search-bar span {
+    font-size: 26px !important;
+    top: 10px !important;
+    right: 50px;
+  }
+  body main .header_container-search-bar button {
+    font-size: 18px;
+    height: 40px;
+    width: 40px;
+    margin-right: 4px;
   }
 }
 

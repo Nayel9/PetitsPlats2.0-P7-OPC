@@ -102,42 +102,42 @@
 
 @media (max-width: 768px) {
 
-  .header_container-search-bar input{
-    font-size: 16px;
-  }
+  .recipe_container {
+    grid-template-columns: repeat(2, 49%);
+    padding: 0 5%;
+    column-gap: 15px;
+    row-gap: 30px;
 
-    .recipe_container {
-      grid-template-columns: repeat(2, 1fr);
+    .recipe_card {
+       width: 100%;
 
-      .recipe_card {
-        width: 100%;
-
-        .recipe_card_img {
-          width: 111.2%;
-        }
-      }
-      .recipe_card_time {
-        left: 500px;
-      }
-      .recipe_card_content{
-        gap: 40px;
-        line-height: 1.4;
-        h3{
-          font-size: 18px;
-        }
-        .recipe_card_title{
-          font-size: 20px;
-          line-height: 1.2;
-        }
-        .recipe_card_description p{
-          font-size: 18px;
-        }
-        .recipe_card_ingredients{
-          font-size: 18px;
-        }
+      .recipe_card_img {
+        width: 121.5%;
       }
     }
-}@media (max-width: 426px) {
+    .recipe_card_time {
+       left: 260px;
+    }
+    .recipe_card_content{
+      gap: 40px;
+      line-height: 1.4;
+      h3{
+        font-size: 16px;
+      }
+      .recipe_card_title{
+        font-size: 16px;
+        line-height: 1.2;
+      }
+      .recipe_card_description p{
+        font-size: 14px;
+      }
+      .recipe_card_ingredients{
+        font-size: 14px;
+      }
+    }
+  }
+}
+@media (max-width: 426px) {
 
 
     .recipe_container {
@@ -152,32 +152,30 @@
         width: 100%;
 
         .recipe_card_img {
-          width: 105.1%;
-          height: 800px;
+          width: 117.8%;
+          height: 300px;
         }
       }
       .recipe_card_time {
-        left: 1150px;
-        font-size: 32px;
-        padding: 25px;
-        border-radius: 30px;
+        left: 310px;
+        font-size: 16px;
+        padding: 12px;
+        border-radius: 18px;
       }
       .recipe_card_content{
-        gap: 60px;
-        line-height: 1.6;
-        padding: 80px 160px;
+        gap: 20px;
+        padding: 15px 5px;
         h3{
-          font-size: 42px;
+          font-size: 20px;
         }
         .recipe_card_title{
-          font-size: 48px;
-          line-height: 1.2;
+          font-size: 24px;
         }
         .recipe_card_description p{
-          font-size: 38px;
+          font-size: 18px;
         }
         .recipe_card_ingredients{
-          font-size: 38px;
+          font-size: 18px;
         }
       }
     }
