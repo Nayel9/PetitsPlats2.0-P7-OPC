@@ -325,9 +325,9 @@
 
 .sort_options {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
   row-gap: 15px;
-  column-gap: 30px;
+  column-gap: 15px;
 }
 .sort_options .selected_option {
   display: flex;
@@ -336,7 +336,7 @@
   align-items: center;
   background-color: #FFD15B;
   border-radius: 10px;
-  width: 220px;
+  width: 220px !important;
   height: 53px;
   font-size: 18px;
   padding: 0 20px;
