@@ -128,13 +128,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0 3%;
+    padding: 0 4%;
   }
   .recipe_container .recipe_card {
     width: 100%;
   }
   .recipe_container .recipe_card .recipe_card_img {
-    width: 117.8%;
+    width: 118%;
     height: 300px;
   }
   .recipe_container .recipe_card_time {
@@ -327,7 +327,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   row-gap: 15px;
-  column-gap: 30px;
+  column-gap: 15px;
 }
 .sort_options .selected_option {
   display: flex;
@@ -387,28 +387,28 @@
     right: 10px;
     top: 18px;
   }
+  .sort_options {
+    grid-template-columns: minmax(180px, max-content) repeat(auto-fill, 180px) 20%;
+    column-gap: 20px;
+  }
+  .sort_options .selected_option {
+    width: 180px;
+  }
 }
-.sort_options {
-  grid-template-columns: minmax(180px, max-content) repeat(auto-fill, 180px) 10%;
-}
-.sort_options .selected_option {
-  width: 180px;
-}
-
 @media (max-width: 426px) {
   .filters_section {
     margin: 10px 0;
-    padding: 0 3%;
   }
   .filters_section .recipe_filters {
     flex-direction: column-reverse;
     gap: 20px;
   }
   .filters_section .recipe_filters .filters_categories {
-    gap: 10px;
+    padding: 0 4%;
+    gap: 5px;
   }
   .filters_section .recipe_filters .filters_categories .filtre {
-    width: 130px;
+    width: 125px;
   }
   .filters_section .recipe_filters .filters_categories .filtre .option {
     padding-bottom: 5px;
@@ -427,14 +427,14 @@
     font-size: 16px;
     width: auto;
     height: auto;
-    padding: 15px;
+    padding: 15px 10px;
     gap: 10px;
   }
   .filters_section .recipe_filters .filters_categories .filtre .list {
     width: 100%;
     top: 38px;
     padding: 0;
-    height: 800px;
+    height: 325px;
   }
   .filters_section .recipe_filters .filters_categories .filtre .list label input {
     height: 28px;
@@ -462,12 +462,12 @@
     font-size: 25px;
   }
   .filters_section .sort_options {
-    grid-template-columns: minmax(130px, max-content) repeat(auto-fill, 130px) 10%;
+    grid-template-columns: minmax(125px, max-content) repeat(auto-fill, 125px) 10%;
     row-gap: 5px;
     column-gap: 5px;
   }
   .filters_section .sort_options .selected_option {
-    width: 130px;
+    width: 125px;
     height: 38px;
     font-size: 12px;
     padding: 10px 10px;
@@ -495,7 +495,6 @@ body {
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
-  overflow-x: hidden;
 }
 
 main {
@@ -622,8 +621,8 @@ a {
 }
 @media (max-width: 426px) {
   body {
-    overflow-x: hidden;
     box-sizing: border-box;
+    overflow-x: hidden;
   }
   body main {
     width: 426px;
