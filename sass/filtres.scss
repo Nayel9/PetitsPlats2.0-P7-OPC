@@ -259,14 +259,14 @@
 @media (max-width: 426px){
   .filters_section{
     margin: 10px 0;
-    padding: 0 3%;
     .recipe_filters{
       flex-direction: column-reverse;
       gap: 20px;
       .filters_categories{
-        gap: 10px;
+        padding: 0 4%;
+        gap: 5px;
         .filtre{
-          width: 130px;
+          width: 125px;
           .option {
             padding-bottom: 5px;
             span{
@@ -285,7 +285,7 @@
             font-size: 16px;
             width: auto;
             height: auto;
-            padding: 15px;
+            padding: 15px 10px;
             gap: 10px;
           }
           .list {

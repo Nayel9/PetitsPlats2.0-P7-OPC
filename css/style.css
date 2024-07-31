@@ -128,13 +128,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0 3%;
+    padding: 0 4%;
   }
   .recipe_container .recipe_card {
     width: 100%;
   }
   .recipe_container .recipe_card .recipe_card_img {
-    width: 117.8%;
+    width: 118%;
     height: 300px;
   }
   .recipe_container .recipe_card_time {
@@ -398,17 +398,17 @@
 @media (max-width: 426px) {
   .filters_section {
     margin: 10px 0;
-    padding: 0 3%;
   }
   .filters_section .recipe_filters {
     flex-direction: column-reverse;
     gap: 20px;
   }
   .filters_section .recipe_filters .filters_categories {
-    gap: 10px;
+    padding: 0 4%;
+    gap: 5px;
   }
   .filters_section .recipe_filters .filters_categories .filtre {
-    width: 130px;
+    width: 125px;
   }
   .filters_section .recipe_filters .filters_categories .filtre .option {
     padding-bottom: 5px;
@@ -427,7 +427,7 @@
     font-size: 16px;
     width: auto;
     height: auto;
-    padding: 15px;
+    padding: 15px 10px;
     gap: 10px;
   }
   .filters_section .recipe_filters .filters_categories .filtre .list {
