@@ -325,7 +325,7 @@
 
 .sort_options {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   row-gap: 15px;
   column-gap: 15px;
 }
@@ -336,7 +336,7 @@
   align-items: center;
   background-color: #FFD15B;
   border-radius: 10px;
-  width: 220px !important;
+  width: 220px;
   height: 53px;
   font-size: 18px;
   padding: 0 20px;
@@ -387,14 +387,14 @@
     right: 10px;
     top: 18px;
   }
+  .sort_options {
+    grid-template-columns: minmax(180px, max-content) repeat(auto-fill, 180px) 20%;
+    column-gap: 20px;
+  }
+  .sort_options .selected_option {
+    width: 180px;
+  }
 }
-.sort_options {
-  grid-template-columns: minmax(180px, max-content) repeat(auto-fill, 180px) 10%;
-}
-.sort_options .selected_option {
-  width: 180px;
-}
-
 @media (max-width: 426px) {
   .filters_section {
     margin: 10px 0;
@@ -462,12 +462,12 @@
     font-size: 25px;
   }
   .filters_section .sort_options {
-    grid-template-columns: minmax(130px, max-content) repeat(auto-fill, 130px) 10%;
+    grid-template-columns: minmax(125px, max-content) repeat(auto-fill, 125px) 10%;
     row-gap: 5px;
     column-gap: 5px;
   }
   .filters_section .sort_options .selected_option {
-    width: 130px;
+    width: 125px;
     height: 38px;
     font-size: 12px;
     padding: 10px 10px;
@@ -495,7 +495,6 @@ body {
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
-  overflow-x: hidden;
 }
 
 main {
@@ -622,7 +621,6 @@ a {
 }
 @media (max-width: 426px) {
   body {
-    overflow-x: hidden;
     box-sizing: border-box;
   }
   body main {

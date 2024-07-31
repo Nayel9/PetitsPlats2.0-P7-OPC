@@ -21,7 +21,6 @@ body{
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
-  overflow-x: hidden;
 }
 
 main{
@@ -158,7 +157,6 @@ a{
 
 @media (max-width: 426px){
   body {
-    overflow-x: hidden;
     box-sizing: border-box;
     main {
       width: 426px;
