@@ -158,6 +158,7 @@ a{
 @media (max-width: 426px){
   body {
     box-sizing: border-box;
+    overflow-x: hidden;
     main {
       width: 426px;
       .header_container{

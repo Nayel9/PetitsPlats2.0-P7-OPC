@@ -622,6 +622,7 @@ a {
 @media (max-width: 426px) {
   body {
     box-sizing: border-box;
+    overflow-x: hidden;
   }
   body main {
     width: 426px;
