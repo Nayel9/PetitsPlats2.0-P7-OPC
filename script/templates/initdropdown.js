@@ -26,6 +26,7 @@ recipes.forEach(recipe => {
     });
 });
 
+
 /**
  * Instance de Dropdown pour les ingrédients.
  * @type {Dropdown}
@@ -65,8 +66,10 @@ const dropdownUstensils = new Dropdown(
 dropdownIngredients.initDropdown();
 dropdownIngredients.createListItem();
 
+
 dropdownAppliances.initDropdown();
 dropdownAppliances.createListItem();
 
 dropdownUstensils.initDropdown();
 dropdownUstensils.createListItem();
+

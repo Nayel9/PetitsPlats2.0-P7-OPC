@@ -89,9 +89,22 @@ class Dropdown {
     }
 
     /**
+     * Met à jour les éléments du menu déroulant en fonction des recettes filtrées.
+     * @param {Array} newItems - La nouvelle liste des éléments.
+     */
+    updateItems(newItems) {
+        this.items = newItems;
+        this.createListItem();
+    }
+
+    /**
      * Crée les éléments de la liste du menu déroulant.
      */
     createListItem() {
+        // Supprimer les éléments existants
+        this.option.parentNode.querySelectorAll('.item_name').forEach(item => item.remove());
+        console.log(this.items);
+        // Ajouter les nouveaux éléments
         this.items.forEach(item => {
             const name = document.createElement('div');
             name.className = 'item_name';
@@ -193,6 +206,7 @@ class Dropdown {
 
                 userChosenTags.length > 0 ? filterRecipesByTags() : searchRecipes();
             }
+
         });
 
         this.selectedFilters.add(item);

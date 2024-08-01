@@ -45,6 +45,9 @@ let filteredRecipesByInput = [];
  */
 clearButton.addEventListener('click', () => {
     userChosenTags.length !== 0 ? displayFilteredRecipes(filteredRecipesByInput) : displayAllRecipes();
+    dropdownIngredients.updateItems(Array.from(uniqueIngredients));
+    dropdownAppliances.updateItems(Array.from(uniqueAppliances));
+    dropdownUstensils.updateItems(Array.from(uniqueUstensils));
 });
 
 /**
@@ -92,9 +95,33 @@ function searchRecipes() {
         displayFilteredRecipes(filteredRecipesByInput);
     }
 
+    // Mettre à jour les éléments du menu déroulant en fonction des recettes filtrées
+    const newIngredients = new Set();
+    const newAppliances = new Set();
+    const newUstensils = new Set();
+
+    filteredRecipesByInput.forEach(recipe => {
+        recipe.ingredients.forEach(ingredient => {
+            newIngredients.add(ingredient.ingredient);
+        });
+        newAppliances.add(recipe.appliance);
+        recipe.ustensils.forEach(ustensile => {
+            newUstensils.add(ustensile);
+        });
+    });
+
+    if (filteredRecipesByInput.length === 0) {
+        dropdownIngredients.updateItems(Array.from(uniqueIngredients));
+        dropdownAppliances.updateItems(Array.from(uniqueAppliances));
+        dropdownUstensils.updateItems(Array.from(uniqueUstensils));
+    } else {
+        dropdownIngredients.updateItems(Array.from(newIngredients));
+        dropdownAppliances.updateItems(Array.from(newAppliances));
+        dropdownUstensils.updateItems(Array.from(newUstensils));
+    }
+
     updateRecipeCount();
 }
-
 /**
  * Affiche les recettes filtrées.
  * @param {Array} filteredRecipes - Le tableau des recettes filtrées.
