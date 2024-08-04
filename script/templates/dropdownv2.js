@@ -4,11 +4,11 @@
 class Dropdown {
     /**
      * Crée une instance de Dropdown.
-     * @param {HTMLElement} filter - L'élément de filtre.
-     * @param {HTMLElement} option - L'élément d'option.
-     * @param {HTMLElement} list - La liste des éléments.
-     * @param {HTMLElement} dropdownIcon - L'icône du menu déroulant.
-     * @param {Array<string>} items - Les éléments du menu déroulant.
+     * @param {HTMLElement} filter - L'élément HTML du filtre.
+     * @param {HTMLElement} option - L'élément HTML des options.
+     * @param {HTMLElement} list - L'élément HTML de la liste.
+     * @param {HTMLElement} dropdownIcon - L'élément HTML de l'icône du menu déroulant.
+     * @param {Array} items - La liste des éléments du menu déroulant.
      */
     constructor(filter, option, list, dropdownIcon, items) {
         this.filter = filter;
@@ -28,13 +28,13 @@ class Dropdown {
      * Initialise l'événement de perte de focus pour fermer le menu déroulant.
      */
     initBlur() {
-    this.list.addEventListener('blur', (event) => {
-        if (this.list.contains(event.relatedTarget)) {
-            return;
-        }
-        this.closeDropdown();
-    });
-}
+        this.list.addEventListener('blur', (event) => {
+            if (this.list.contains(event.relatedTarget)) {
+                return;
+            }
+            this.closeDropdown();
+        });
+    }
 
     /**
      * Ouvre le menu déroulant.
@@ -62,41 +62,54 @@ class Dropdown {
     }
 
     /**
-     * Bascule l'état du menu déroulant (ouvert/fermé).
+     * Bascule l'état du menu déroulant entre ouvert et fermé.
      */
     toggleDropdown() {
-        if (this.isOpen) {
-            this.closeDropdown();
-        } else {
-            this.openDropdown();
-        }
+        this.isOpen ? this.closeDropdown() : this.openDropdown();
     }
 
     /**
-     * Initialise les événements pour ouvrir/fermer le menu déroulant.
+     * Initialise le menu déroulant avec les événements de la souris.
      */
     initDropdown() {
-    let isMouseDown = false;
+        let isMouseDown = false;
 
-    this.filter.addEventListener('mousedown', (event) => {
-        event.preventDefault();
-        isMouseDown = true;
-    });
+        this.filter.addEventListener('mousedown', (event) => {
+            event.preventDefault();
+            isMouseDown = true;
+        });
 
-    this.filter.addEventListener('mouseup', (event) => {
-        event.preventDefault();
-        if (isMouseDown) {
-            this.toggleDropdown();
-            isMouseDown = false;
-        }
-    });
-}
+        this.filter.addEventListener('mouseup', (event) => {
+            event.preventDefault();
+            if (isMouseDown) {
+                this.toggleDropdown();
+                isMouseDown = false;
+            }
+        });
+    }
+
+    /**
+     * Met à jour les éléments du menu déroulant en fonction des recettes filtrées.
+     * @param {Array} newItems - La nouvelle liste des éléments.
+     */
+    updateItems(newItems) {
+        this.items = newItems;
+        this.createListItem();
+    }
 
     /**
      * Crée les éléments de la liste du menu déroulant.
      */
     createListItem() {
-        this.items.forEach(item => {
+        // Supprimer les éléments existants
+        const existingItems = this.option.parentNode.querySelectorAll('.item_name');
+        for (let i = 0; i < existingItems.length; i++) {
+            existingItems[i].remove();
+        }
+
+        // Ajouter les nouveaux éléments
+        for (let i = 0; i < this.items.length; i++) {
+            const item = this.items[i];
             const name = document.createElement('div');
             name.className = 'item_name';
             name.textContent = item;
@@ -108,7 +121,7 @@ class Dropdown {
                 this.createSelectedOption(item, name);
                 this.createListedOption(item, name);
             });
-        });
+        }
     }
 
     /**
@@ -121,9 +134,8 @@ class Dropdown {
 
         let circleCloseIcon = name.querySelector('.circle_close_icon');
         if (!circleCloseIcon) {
-
             circleCloseIcon = document.createElement('div');
-            const icon = document.createElement('i')
+            const icon = document.createElement('i');
             icon.className = 'fa-solid fa-xmark';
             circleCloseIcon.appendChild(icon);
             circleCloseIcon.className = 'circle_close_icon';
@@ -131,11 +143,14 @@ class Dropdown {
         }
 
         circleCloseIcon.addEventListener('click', (event) => {
-            event.stopPropagation()
+            event.stopPropagation();
 
-            const selectedOption = Array.from(document.querySelectorAll('.selected_option')).find(option => option.textContent === item);
-            if (selectedOption) {
-                selectedOption.remove();
+            const selectedOptions = document.querySelectorAll('.selected_option');
+            for (let i = 0; i < selectedOptions.length; i++) {
+                if (selectedOptions[i].textContent === item) {
+                    selectedOptions[i].remove();
+                    break;
+                }
             }
             name.className = 'item_name';
             circleCloseIcon.remove();
@@ -147,29 +162,21 @@ class Dropdown {
                 userChosenTags.splice(index, 1);
             }
 
-
-            if (userChosenTags.length > 0) {
-                filterRecipesByTags()
-            } else {
-                searchRecipes();
-            }
-
+            userChosenTags.length > 0 ? filterRecipesByTags() : searchRecipes();
         });
 
         if (!userChosenTags.includes(item)) {
             userChosenTags.push(item);
             filterRecipesByTags();
         }
-
     }
 
     /**
-     * Crée un tag sélectionné depuis le menu déroulant.
+     * Crée une option sélectionnée dans le menu déroulant.
      * @param {string} item - L'élément à ajouter.
      * @param {HTMLElement} name - L'élément HTML du nom.
      */
     createSelectedOption(item, name) {
-
         if (this.selectedFilters.has(item)) {
             return;
         }
@@ -204,17 +211,12 @@ class Dropdown {
                     userChosenTags.splice(index, 1);
                 }
 
-                if (userChosenTags.length > 0) {
-                    filterRecipesByTags()
-                } else {
-                    searchRecipes();
-                }
+                userChosenTags.length > 0 ? filterRecipesByTags() : searchRecipes();
             }
 
         });
 
         this.selectedFilters.add(item);
-
     }
 
     /**
@@ -222,7 +224,8 @@ class Dropdown {
      */
     initSearchBarOptions() {
         const inputElements = this.option.querySelectorAll('input');
-        inputElements.forEach(input => {
+        for (let i = 0; i < inputElements.length; i++) {
+            const input = inputElements[i];
             input.addEventListener('click', function(event) {
                 event.stopPropagation();
             });
@@ -233,11 +236,11 @@ class Dropdown {
                 }
                 this.closeDropdown();
             });
-        });
+        }
 
         const searchBarOptions = this.option.querySelectorAll('input');
-
-        searchBarOptions.forEach(searchBarOption => {
+        for (let i = 0; i < searchBarOptions.length; i++) {
+            const searchBarOption = searchBarOptions[i];
             const clearOption = document.createElement('span');
             clearOption.className = 'fa-solid fa-xmark clear-button';
 
@@ -246,21 +249,15 @@ class Dropdown {
             clearOption.style.display = 'none';
 
             searchBarOption.addEventListener('input', function() {
-                if (searchBarOption.value) {
-                    clearOption.style.display = 'block';
-                } else {
-                    clearOption.style.display = 'none';
-                }
+                clearOption.style.display = searchBarOption.value ? 'block' : 'none';
             });
 
             clearOption.addEventListener('click', function(event) {
-                event.stopPropagation()
+                event.stopPropagation();
                 clearSearch();
                 searchBarOption.value = '';
                 clearOption.style.display = 'none';
             });
-        });
+        }
     }
-
 }
-
