@@ -79,7 +79,7 @@ const recipes = [
         "ingredients": [
             {
                 "ingredient": "Poulet",
-                "quantity" : 1          
+                "quantity" : 1
             },
             {
                 "ingredient": "Lait de coco",
@@ -156,7 +156,7 @@ const recipes = [
         "ingredients":[
            {
                "ingredient": "Pâte feuilletée",
-               "quantity": 1 
+               "quantity": 1
            },
            {
                "ingredient": "Thon en miettes",
@@ -236,7 +236,7 @@ const recipes = [
             {
                 "ingredient": "Pâte sablée",
                 "quantity": 1
-            }, 
+            },
             {
                 "ingredient": "Chocolat au lait",
                 "quantity": 300,
@@ -297,7 +297,7 @@ const recipes = [
                 "unit": "grammes"
            }
 
-        ], 
+        ],
         "time": 60,
         "description": "Hachez les noix grossièrement. Faire fondre le chocolat avec le beurre. Mélanger les oeufs et le sucre et mélanger au chocolat. Ajouter la farine. Mélanger afin d'avoir quelque chose d'homogène puis incorporer les noix. Verser la préparation dans un moule de préférence rectangulaire. Cuire 2O à 25 minutes à 180°. Sortez du four et attendez quelques minutes pour démouler. Servir avec une boule de glace pour plus de gourmandise.",
         "appliance": "Four",
@@ -326,9 +326,9 @@ const recipes = [
             },
             {
                 "ingredient": "Huile d'olive"
-            }, 
+            },
             {
-                "ingredient": "Basilic"    
+                "ingredient": "Basilic"
             }
         ],
         "time": 15,
@@ -391,7 +391,7 @@ const recipes = [
                 "ingredient": "Jambon de parme",
                 "quantity": 4,
                 "unit": "tranches"
-            }, 
+            },
             {
                 "ingredient": "Pommes",
                 "quantity": 1
@@ -1337,7 +1337,7 @@ const recipes = [
                 "quantity": 50,
                 "unit": "grammes"
             }
-            
+
         ],
         "time": 60,
         "description":"Couper les courgettes dans le sens de la longueur. Vider les courgette dans un saladier. Réserver.Faire revenir la chair des courgettes dans 25cl d'huile d'olive. Ajouter l'oignon puis la viande hachée. Mettre la farce dans les courgettes. Ajouter le coulis de tomates. Mettre au four pendant 30 minutes. Avant la fin de la cuisson ajouter le fromage râpé",
@@ -1462,7 +1462,7 @@ const recipes = [
         "description":"Séparer les blancs d'oeufs. Faire fondre le chocolat au bain marie. Ajouter les jaunes et le sucre au chocolat hors du feu. Battre les blancs en neige. Ajouter les blancs au mélange de chocolat. Mélangez délicatement avec une spatule. Servir dans un plat ou dans des verres. Mettre au frais",
         "appliance": "Casserole",
         "ustensils":["fouet", "spatule", "verres"]
-    }, 
+    },
     {
         "id": 42,
         "image": "Recette42.jpg",
@@ -1526,7 +1526,7 @@ const recipes = [
         "description":"Préchauffez le fours à 200°. Étaler la pate. La mettre dans un moule. Battre les oeufs avec le sucre. Ajouter le jus de citron et le beurre. Verser le tout sur la pate. Au four 30 minutes. Bon appetit ",
         "appliance": "Four",
         "ustensils":["rouleau à patisserie", "moule à tarte", "presse citron"]
-    }, 
+    },
     {
         "id": 44,
         "image": "Recette44.jpg",
@@ -1775,3 +1775,56 @@ const recipes = [
         "ustensils":["rouleau à patisserie","fouet"]
     }
 ]
+
+// function getRandomInt(min, max) {
+//     return Math.floor(Math.random() * (max - min + 1)) + min;
+// }
+//
+// function getRandomElement(arr) {
+//     return arr[getRandomInt(0, arr.length - 1)];
+// }
+//
+// const ingredientsList = [
+//     "Lait de coco", "Jus de citron", "Crème de coco", "Sucre", "Glaçons",
+//     "Farine", "Beurre", "Oeufs", "Chocolat", "Vanille", "Sel", "Poivre",
+//     "Tomates", "Poulet", "Riz", "Pâtes", "Fromage", "Lait", "Huile d'olive",
+//     "Ail", "Oignons", "Carottes", "Pommes de terre", "Poivrons", "Champignons"
+// ];
+//
+// const appliancesList = ["Blender", "Four", "Casserole", "Poêle", "Saladier", "Mixer"];
+// const ustensilsList = ["cuillère à soupe", "verres", "presse citron", "fouet", "couteau", "cuillère en bois"];
+//
+// function generateIngredient() {
+//     return {
+//         ingredient: getRandomElement(ingredientsList),
+//         quantity: getRandomInt(1, 500),
+//         unit: getRandomElement(["ml", "g", "cuillères à soupe", ""])
+//     };
+// }
+//
+// function generateRecipe(id) {
+//     const numIngredients = getRandomInt(3, 7);
+//     const ingredients = [];
+//     for (let i = 0; i < numIngredients; i++) {
+//         ingredients.push(generateIngredient());
+//     }
+//
+//     return {
+//         id: id,
+//         image: `Recette${id}.jpg`,
+//         name: `Recette ${id}`,
+//         servings: getRandomInt(1, 8),
+//         ingredients: ingredients,
+//         time: getRandomInt(10, 120),
+//         description: `Description factice de la recette ${getRandomElement(ingredientsList)}.`,
+//         appliance: getRandomElement(appliancesList),
+//         ustensils: Array.from({ length: getRandomInt(1, 4) }, () => getRandomElement(ustensilsList))
+//     };
+// }
+//
+// const recipes = [];
+// for (let i = 1; i <= 1000; i++) {
+//     recipes.push(generateRecipe(i));
+// }
+//
+// console.log(JSON.stringify(recipes, null, 2));
