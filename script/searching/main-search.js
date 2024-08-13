@@ -71,13 +71,15 @@ searchButton.addEventListener('click', () => {
  */
 function searchRecipes() {
     let searchInputWords = escapeHTML(searchBarUserInput.value.toLowerCase()).split(' ');
-    filteredRecipesByInput = recipes.filter(recipe => {
-        let recipeTitleWords = recipe.name.toLowerCase().split(' ');
-        let recipeDescriptionWords = recipe.description.toLowerCase().split(' ');
-        let titleMatch = searchInputWords.some(inputWord => recipeTitleWords.some(titleWord => titleWord.startsWith(inputWord)));
-        let descriptionMatch = !titleMatch && searchInputWords.some(inputWord => recipeDescriptionWords.some(descriptionWord => descriptionWord.startsWith(inputWord)));
-        return titleMatch || descriptionMatch;
-    });
+   filteredRecipesByInput = recipes.filter(recipe => {
+    let recipeTitleWords = recipe.name.toLowerCase().split(' ');
+    let recipeDescriptionWords = recipe.description.toLowerCase().split(' ');
+    let recipeIngredientWords = recipe.ingredients.map(ingredient => ingredient.ingredient.toLowerCase().split(' ')).flat();
+    let titleMatch = searchInputWords.some(inputWord => recipeTitleWords.some(titleWord => titleWord.startsWith(inputWord)));
+    let descriptionMatch = !titleMatch && searchInputWords.some(inputWord => recipeDescriptionWords.some(descriptionWord => descriptionWord.startsWith(inputWord)));
+    let ingredientMatch = !titleMatch && !descriptionMatch && searchInputWords.some(inputWord => recipeIngredientWords.some(ingredientWord => ingredientWord.startsWith(inputWord)));
+    return titleMatch || descriptionMatch || ingredientMatch;
+});
 
     userChosenTags.length > 0 ? filterRecipesByTags() : displayFilteredRecipes(filteredRecipesByInput);
 
