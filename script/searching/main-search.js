@@ -72,38 +72,56 @@ searchButton.addEventListener('click', () => {
 function searchRecipes() {
     let searchInputWords = escapeHTML(searchBarUserInput.value.toLowerCase()).split(' ');
     filteredRecipesByInput = [];
-    for (let i = 0; i < recipes.length; i++) {
-        let recipe = recipes[i];
-        let recipeTitleWords = recipe.name.toLowerCase().split(' ');
-        let recipeDescriptionWords = recipe.description.toLowerCase().split(' ');
-        let titleMatch = false;
+for (let i = 0; i < recipes.length; i++) {
+    let recipe = recipes[i];
+    let recipeTitleWords = recipe.name.toLowerCase().split(' ');
+    let recipeDescriptionWords = recipe.description.toLowerCase().split(' ');
+    let recipeIngredientWords = recipe.ingredients.map(ingredient => ingredient.ingredient.toLowerCase().split(' ')).flat();
+
+    let titleMatch = false;
+    for (let j = 0; j < searchInputWords.length; j++) {
+        let inputWord = searchInputWords[j];
+        for (let k = 0; k < recipeTitleWords.length; k++) {
+            if (recipeTitleWords[k].startsWith(inputWord)) {
+                titleMatch = true;
+                break;
+            }
+        }
+        if (titleMatch) break;
+    }
+
+    let descriptionMatch = false;
+    if (!titleMatch) {
         for (let j = 0; j < searchInputWords.length; j++) {
             let inputWord = searchInputWords[j];
-            for (let k = 0; k < recipeTitleWords.length; k++) {
-                if (recipeTitleWords[k].startsWith(inputWord)) {
-                    titleMatch = true;
+            for (let k = 0; k < recipeDescriptionWords.length; k++) {
+                if (recipeDescriptionWords[k].startsWith(inputWord)) {
+                    descriptionMatch = true;
                     break;
                 }
             }
-            if (titleMatch) break;
-        }
-        let descriptionMatch = false;
-        if (!titleMatch) {
-            for (let j = 0; j < searchInputWords.length; j++) {
-                let inputWord = searchInputWords[j];
-                for (let k = 0; k < recipeDescriptionWords.length; k++) {
-                    if (recipeDescriptionWords[k].startsWith(inputWord)) {
-                        descriptionMatch = true;
-                        break;
-                    }
-                }
-                if (descriptionMatch) break;
-            }
-        }
-        if (titleMatch || descriptionMatch) {
-            filteredRecipesByInput.push(recipe);
+            if (descriptionMatch) break;
         }
     }
+
+    let ingredientMatch = false;
+    if (!titleMatch && !descriptionMatch) {
+        for (let j = 0; j < searchInputWords.length; j++) {
+            let inputWord = searchInputWords[j];
+            for (let k = 0; k < recipeIngredientWords.length; k++) {
+                if (recipeIngredientWords[k].startsWith(inputWord)) {
+                    ingredientMatch = true;
+                    break;
+                }
+            }
+            if (ingredientMatch) break;
+        }
+    }
+
+    if (titleMatch || descriptionMatch || ingredientMatch) {
+        filteredRecipesByInput.push(recipe);
+    }
+}
 
     userChosenTags.length > 0 ? filterRecipesByTags() : displayFilteredRecipes(filteredRecipesByInput);
 
