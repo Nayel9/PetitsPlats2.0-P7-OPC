@@ -11,6 +11,40 @@ let userChosenTags = [];
 let filteredRecipes = [];
 
 /**
+ * Met à jour les éléments du menu déroulant en fonction des recettes filtrées.
+ * @param {Array} filteredRecipes - Le tableau des recettes filtrées.
+ */
+/**
+ * Met à jour les éléments du menu déroulant en fonction des recettes filtrées.
+ * @param {Array} filteredRecipes - Le tableau des recettes filtrées.
+ */
+function updateDropdowns(filteredRecipes) {
+    const newIngredients = new Set();
+    const newAppliances = new Set();
+    const newUstensils = new Set();
+
+    filteredRecipes.forEach(recipe => {
+        recipe.ingredients.forEach(ingredient => {
+            if (!userChosenTags.includes(ingredient.ingredient)) {
+                newIngredients.add(ingredient.ingredient);
+            }
+        });
+        if (!userChosenTags.includes(recipe.appliance)) {
+            newAppliances.add(recipe.appliance);
+        }
+        recipe.ustensils.forEach(ustensile => {
+            if (!userChosenTags.includes(ustensile)) {
+                newUstensils.add(ustensile);
+            }
+        });
+    });
+
+    dropdownIngredients.updateItems(Array.from(newIngredients));
+    dropdownAppliances.updateItems(Array.from(newAppliances));
+    dropdownUstensils.updateItems(Array.from(newUstensils));
+}
+
+/**
  * Filtre les recettes en fonction des tags choisis par l'utilisateur.
  */
 function filterRecipesByTags() {
@@ -43,6 +77,7 @@ function filterRecipesByTags() {
     }
 
     updateRecipeCount();
+    updateDropdowns(filteredRecipes);
 }
 
 /**
