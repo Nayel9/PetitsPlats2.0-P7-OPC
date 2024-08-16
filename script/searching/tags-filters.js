@@ -11,30 +11,57 @@ let userChosenTags = [];
 let filteredRecipes = [];
 
 /**
+ * Met à jour les éléments du menu déroulant en fonction des recettes filtrées.
+ * @param {Array} filteredRecipes - Le tableau des recettes filtrées.
+ */
+function updateDropdowns(filteredRecipes) {
+    const newIngredients = new Set();
+    const newAppliances = new Set();
+    const newUstensils = new Set();
+
+    for (let i = 0; i < filteredRecipes.length; i++) {
+        const recipe = filteredRecipes[i];
+        for (let j = 0; j < recipe.ingredients.length; j++) {
+            const ingredient = recipe.ingredients[j].ingredient;
+            if (!userChosenTags.includes(ingredient)) {
+                newIngredients.add(ingredient);
+            }
+        }
+        if (!userChosenTags.includes(recipe.appliance)) {
+            newAppliances.add(recipe.appliance);
+        }
+        for (let j = 0; j < recipe.ustensils.length; j++) {
+            const ustensil = recipe.ustensils[j];
+            if (!userChosenTags.includes(ustensil)) {
+                newUstensils.add(ustensil);
+            }
+        }
+    }
+
+    dropdownIngredients.updateItems(Array.from(newIngredients));
+    dropdownAppliances.updateItems(Array.from(newAppliances));
+    dropdownUstensils.updateItems(Array.from(newUstensils));
+}
+
+/**
  * Filtre les recettes en fonction des tags choisis par l'utilisateur.
  */
 function filterRecipesByTags() {
-    filteredRecipes = [];
+    let sourceRecipes = (!filteredRecipesByInput || filteredRecipesByInput.length === 0) ? recipes : filteredRecipesByInput;
+
     resetDisplayProperty();
+    filteredRecipes = [];
 
-    let dataSource;
-    if (filteredRecipesByInput.length > 0) {
-        dataSource = filteredRecipesByInput;
-    } else {
-        dataSource = recipes;
-    }
-
-    for (let i = 0; i < dataSource.length; i++) {
-        let recipe = dataSource[i];
+    for (let i = 0; i < sourceRecipes.length; i++) {
+        const recipe = sourceRecipes[i];
         let hasAllTags = true;
 
         for (let j = 0; j < userChosenTags.length; j++) {
-            let userChosenTag = userChosenTags[j];
+            const userChosenTag = userChosenTags[j];
             let tagFound = false;
-            
+
             for (let k = 0; k < recipe.ingredients.length; k++) {
-                let recipeIngredient = recipe.ingredients[k];
-                if (recipeIngredient.ingredient === userChosenTag) {
+                if (recipe.ingredients[k].ingredient === userChosenTag) {
                     tagFound = true;
                     break;
                 }
@@ -45,8 +72,7 @@ function filterRecipesByTags() {
             }
 
             for (let k = 0; k < recipe.ustensils.length; k++) {
-                let recipeUstensil = recipe.ustensils[k];
-                if (recipeUstensil === userChosenTag) {
+                if (recipe.ustensils[k] === userChosenTag) {
                     tagFound = true;
                     break;
                 }
@@ -62,9 +88,10 @@ function filterRecipesByTags() {
             filteredRecipes.push(recipe);
             recipe.isDisplayed = true;
         } else {
-            recipe.isDisplayed = false; // Marquer la recette comme cachée
+            recipe.isDisplayed = false;
         }
     }
+
     displayFilteredRecipes(filteredRecipes);
 
     let errorMessage = document.getElementById('error-message');
@@ -82,8 +109,8 @@ function filterRecipesByTags() {
     }
 
     updateRecipeCount();
+    updateDropdowns(filteredRecipes);
 }
-
 /**
  * Réinitialise la propriété d'affichage de toutes les recettes.
  */
