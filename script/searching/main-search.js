@@ -70,58 +70,23 @@ searchButton.addEventListener('click', () => {
  * Recherche des recettes en fonction de l'entrée de l'utilisateur.
  */
 function searchRecipes() {
-    let searchInputWords = escapeHTML(searchBarUserInput.value.toLowerCase()).split(' ');
+    let searchInputPhrases = escapeHTML(searchBarUserInput.value.toLowerCase());
     filteredRecipesByInput = [];
-for (let i = 0; i < recipes.length; i++) {
-    let recipe = recipes[i];
-    let recipeTitleWords = recipe.name.toLowerCase().split(' ');
-    let recipeDescriptionWords = recipe.description.toLowerCase().split(' ');
-    let recipeIngredientWords = recipe.ingredients.map(ingredient => ingredient.ingredient.toLowerCase().split(' ')).flat();
 
-    let titleMatch = false;
-    for (let j = 0; j < searchInputWords.length; j++) {
-        let inputWord = searchInputWords[j];
-        for (let k = 0; k < recipeTitleWords.length; k++) {
-            if (recipeTitleWords[k].startsWith(inputWord)) {
-                titleMatch = true;
-                break;
-            }
-        }
-        if (titleMatch) break;
-    }
+    for (let i = 0; i < recipes.length; i++) {
+        let recipe = recipes[i];
+        let recipeTitle = recipe.name.toLowerCase();
+        let recipeDescription = recipe.description.toLowerCase();
+        let recipeIngredients = recipe.ingredients.map(ingredient => ingredient.ingredient.toLowerCase()).join(' ');
 
-    let descriptionMatch = false;
-    if (!titleMatch) {
-        for (let j = 0; j < searchInputWords.length; j++) {
-            let inputWord = searchInputWords[j];
-            for (let k = 0; k < recipeDescriptionWords.length; k++) {
-                if (recipeDescriptionWords[k].startsWith(inputWord)) {
-                    descriptionMatch = true;
-                    break;
-                }
-            }
-            if (descriptionMatch) break;
+        let titleMatch = recipeTitle.includes(searchInputPhrases);
+        let descriptionMatch = recipeDescription.includes(searchInputPhrases);
+        let ingredientMatch = recipeIngredients.includes(searchInputPhrases);
+
+        if (titleMatch || descriptionMatch || ingredientMatch) {
+            filteredRecipesByInput.push(recipe);
         }
     }
-
-    let ingredientMatch = false;
-    if (!titleMatch && !descriptionMatch) {
-        for (let j = 0; j < searchInputWords.length; j++) {
-            let inputWord = searchInputWords[j];
-            for (let k = 0; k < recipeIngredientWords.length; k++) {
-                if (recipeIngredientWords[k].startsWith(inputWord)) {
-                    ingredientMatch = true;
-                    break;
-                }
-            }
-            if (ingredientMatch) break;
-        }
-    }
-
-    if (titleMatch || descriptionMatch || ingredientMatch) {
-        filteredRecipesByInput.push(recipe);
-    }
-}
 
     userChosenTags.length > 0 ? filterRecipesByTags() : displayFilteredRecipes(filteredRecipesByInput);
 
@@ -144,16 +109,15 @@ for (let i = 0; i < recipes.length; i++) {
     const newAppliances = new Set();
     const newUstensils = new Set();
 
-    for (let i = 0; i < filteredRecipesByInput.length; i++) {
-        let recipe = filteredRecipesByInput[i];
-        for (let j = 0; j < recipe.ingredients.length; j++) {
-            newIngredients.add(recipe.ingredients[j].ingredient);
-        }
+    filteredRecipesByInput.forEach(recipe => {
+        recipe.ingredients.forEach(ingredient => {
+            newIngredients.add(ingredient.ingredient);
+        });
         newAppliances.add(recipe.appliance);
-        for (let j = 0; j < recipe.ustensils.length; j++) {
-            newUstensils.add(recipe.ustensils[j]);
-        }
-    }
+        recipe.ustensils.forEach(ustensile => {
+            newUstensils.add(ustensile);
+        });
+    });
 
     if (filteredRecipesByInput.length === 0) {
         dropdownIngredients.updateItems(Array.from(uniqueIngredients));
@@ -167,7 +131,6 @@ for (let i = 0; i < recipes.length; i++) {
 
     updateRecipeCount();
 }
-
 /**
  * Affiche les recettes filtrées.
  * @param {Array} filteredRecipes - Le tableau des recettes filtrées.
